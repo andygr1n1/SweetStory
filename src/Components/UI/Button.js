@@ -1,8 +1,9 @@
 import styled, {css} from "styled-components";
 
 export const Button = styled.button`
-
-
+    cursor: pointer;
+    font-family: inherit;
+    
   ${props => props.btnLogin && css`
     display: flex;
     flex-direction: column;
