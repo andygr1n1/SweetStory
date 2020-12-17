@@ -2,36 +2,34 @@ import React from "react";
 import styled from 'styled-components';
 import dbMenu from "./DBMenu";
 import {ListItem} from "./ListItem";
-import BannerImg from "../image/banner.png"
+import {Banner} from "./Banner";
 
 const MenuStyled = styled.main`
     background: snow;
-    margin-top: 80px;
+    margin: 80px 0 0 380px;
     //height: 500px;
-`
-
-const MenuBanner = styled.div`
-    height: 210px;
-    width: 100%;
-    background-image: url("${BannerImg}");
-    background-position: center;
-    background-size: cover;
 `
 
 const SectionMenu = styled.section`
     padding: 30px;
 `
 
-export const Menu = () => (
+export const Menu = ({ setOpenItem }) => (
     <MenuStyled>
-        <MenuBanner/>
+        <Banner/>
         <SectionMenu>
             <h2>Burgers</h2>
-            <ListItem itemList={dbMenu.burger}/>
+            <ListItem
+                itemList={dbMenu.burger}
+                setOpenItem={setOpenItem}
+            />
         </SectionMenu>
         <SectionMenu>
             <h2>Snacks / Drinks</h2>
-            <ListItem itemList={dbMenu.other}/>
+            <ListItem
+                itemList={dbMenu.other}
+                setOpenItem={setOpenItem}
+            />
         </SectionMenu>
     </MenuStyled>
 )
