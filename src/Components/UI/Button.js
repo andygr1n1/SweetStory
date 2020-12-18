@@ -14,6 +14,7 @@ export const Button = styled.button`
     align-items: center; 
     color: #f0f0f0;
     text-transform: uppercase;
+    margin-right: 10px;
     background: none;
   `}
   

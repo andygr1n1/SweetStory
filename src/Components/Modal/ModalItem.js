@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-import {Button} from "./UI/Button";
+import {Button} from "../UI/Button";
 
 const Overlay = styled.div`
       position: fixed;
@@ -17,15 +17,16 @@ const Overlay = styled.div`
 
 const Modal = styled.div`
     background-color: #fff;
-    width: 600px;
-    height: 600px;
+    width: 500px;
+    height: 500px;
     display: flex;
     flex-direction: column;
-    //align-items: center;
-    //justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);   
 `
 
 const Banner = styled.div`
+    border-radius: 10px 10px 0 0 ;
     width: 100%;
     height: 200px;
     background-image: url( ${ ({img}) => img });
@@ -45,15 +46,23 @@ const ModalContent = styled.div`
     flex: 1 1 auto;
 `
 
-export const ModalItem = ({openItem, setOpenItem}) => {
+export const ModalItem = ({openItem, setOpenItem, orders, setOrders}) => {
 
-    function closeModal(e) {
+    const closeModal = (e) => {
         if(e.target.id === "overlay") {
             setOpenItem(null);
         }
     }
 
-    if(!openItem) return null;
+    const order = {
+        ...openItem
+    };
+
+    const addToOrder = () => {
+        setOrders([...orders, order])
+        setOpenItem(null);
+    }
+
     const {img, name, price} = openItem;
     return (
         <Overlay id={'overlay'} onClick={closeModal}>
@@ -64,7 +73,7 @@ export const ModalItem = ({openItem, setOpenItem}) => {
                     <h2>{price.toLocaleString('en-GB', {style: 'currency', currency: 'GBP'})}</h2>
                 </ModalHeader>
                 <ModalContent/>
-                <Button btnModal>
+                <Button btnModal onClick={addToOrder}>
                     Add
                 </Button>
             </Modal>

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from 'styled-components';
-import dbMenu from "./DBMenu";
+import DBSweet from "./DBSweet";
 import {ListItem} from "./ListItem";
 import {Banner} from "./Banner";
 
@@ -12,22 +12,33 @@ const MenuStyled = styled.main`
 
 const SectionMenu = styled.section`
     padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+`
+
+const H2 = styled.h2`
+  text-align: center;
+  font-family: 'Anton', sans-serif;
+  color: #1b8f18;
+  text-shadow: 2px 2px 1px rgb(40,39,39);
 `
 
 export const Menu = ({ setOpenItem }) => (
     <MenuStyled>
         <Banner/>
         <SectionMenu>
-            <h2>Burgers</h2>
+            <H2>New Year Offer</H2>
             <ListItem
-                itemList={dbMenu.burger}
+                itemList={DBSweet.newYear}
                 setOpenItem={setOpenItem}
             />
         </SectionMenu>
         <SectionMenu>
             <h2>Snacks / Drinks</h2>
             <ListItem
-                itemList={dbMenu.other}
+                itemList={DBSweet.newYear}
                 setOpenItem={setOpenItem}
             />
         </SectionMenu>

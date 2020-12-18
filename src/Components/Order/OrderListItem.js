@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {Button} from "./UI/Button";
+import {Button} from "../UI/Button";
 
 const OrderItemStyled = styled.li`
     display: flex;
@@ -20,13 +20,18 @@ const ItemPrice = styled.span`
 `
 
 
-export const OrderListItem = () => {
+export const OrderListItem = ({order}) => {
 
     return(
         <OrderItemStyled>
-            <ItemName>Burder</ItemName>
-            <span>2</span>
-            <ItemPrice>£300</ItemPrice>
+            <ItemName>{order.name}</ItemName>
+            <span>1</span>
+            <ItemPrice>
+                {order.price.toLocaleString(
+                'en-GB',
+                {style: 'currency', currency: 'USD'}
+                )}
+            </ItemPrice>
             <Button btnTrash/>
         </OrderItemStyled>
 

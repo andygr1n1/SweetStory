@@ -1,25 +1,24 @@
 import React from "react";
 import styled from 'styled-components';
+import bgImg from "../../image/li-background.jpg"
 
 const List = styled.ul`
     display:flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 `
 
 const Item = styled.li`
     position: relative;
-    width: 400px;
-    height: 155px;
-    background-image: ${({img}) => `url(${img})`};
-    background-position: center;
+    width: 30%;
+    background-image: url(${({bgImg}) => bgImg});
     background-size: cover;
-    margin: 30px 30px 0 0;
-    font-size: 30px;
-    padding: 15px;
-    color: white;
-    z-index: 1;
+    background-position: center;
+    margin: 30px 30px 0 0;    
+    color: snow;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);   
     &:after {
         content: '';
         position: absolute;
@@ -40,16 +39,29 @@ const Item = styled.li`
     }
 `
 
+const Img = styled.img`
+  border-radius: 10px 10px 0 0;
+  margin: 0 0 15px 0;  
+`
+
+const P = styled.p`
+  padding: 0 0 10px 15px;
+  font-size: 30px;
+  font-family: 'Stint Ultra Condensed', cursive;
+`
+
 export const ListItem = ({ itemList, setOpenItem }) => (
     <List>
         {itemList.map((item) => (
             <Item
                 key={item.id}
                 img={item.img}
+                bgImg={bgImg}
                 onClick={ () => setOpenItem(item) }
             >
-                <p>{item.name}</p>
-                <p>{item.price.toLocaleString('en-GB', {style: 'currency', currency: 'GBP'})}</p>
+                <Img src={item.img} />
+                <P>{item.name}</P>
+                <P>{item.price.toLocaleString('en-GB', {style: 'currency', currency: 'USD'})}</P>
             </Item>
         ))}
     </List>
