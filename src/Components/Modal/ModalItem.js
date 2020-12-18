@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components'
 import {Button} from "../UI/Button";
+import {H2} from "../UI/H2";
 
 const Overlay = styled.div`
+      font-family: 'Anton', sans-serif;
       position: fixed;
       display:flex;
       justify-content: center;
@@ -17,7 +19,7 @@ const Overlay = styled.div`
 
 const Modal = styled.div`
     background-color: #fff;
-    width: 500px;
+    width: 300px;
     height: 500px;
     display: flex;
     flex-direction: column;
@@ -39,7 +41,7 @@ const ModalHeader = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 20px 50px ;
+    margin: 20px 20px ;
 `
 
 const ModalContent = styled.div`
@@ -69,8 +71,8 @@ export const ModalItem = ({openItem, setOpenItem, orders, setOrders}) => {
             <Modal>
                 <Banner img={img} />
                 <ModalHeader>
-                    <h2>{name}</h2>
-                    <h2>{price.toLocaleString('en-GB', {style: 'currency', currency: 'GBP'})}</h2>
+                    <H2 modalHeader>{name}</H2>
+                    <H2 modalHeader>{price.toLocaleString('en-GB', {style: 'currency', currency: 'USD'})}</H2>
                 </ModalHeader>
                 <ModalContent/>
                 <Button btnModal onClick={addToOrder}>

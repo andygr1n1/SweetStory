@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import DBSweet from "./DBSweet";
 import {ListItem} from "./ListItem";
 import {Banner} from "./Banner";
+import {H2} from "../UI/H2";
 
 const MenuStyled = styled.main`
     background: snow;
@@ -18,27 +19,22 @@ const SectionMenu = styled.section`
     
 `
 
-const H2 = styled.h2`
-  text-align: center;
-  font-family: 'Anton', sans-serif;
-  color: #1b8f18;
-  text-shadow: 2px 2px 1px rgb(40,39,39);
-`
+
 
 export const Menu = ({ setOpenItem }) => (
     <MenuStyled>
         <Banner/>
         <SectionMenu>
-            <H2>New Year Offer</H2>
+            <H2 newYearOffer>New Year Offer</H2>
             <ListItem
                 itemList={DBSweet.newYear}
                 setOpenItem={setOpenItem}
             />
         </SectionMenu>
         <SectionMenu>
-            <h2>Snacks / Drinks</h2>
+            <H2 menuHeader>Desserts</H2>
             <ListItem
-                itemList={DBSweet.newYear}
+                itemList={DBSweet.desserts}
                 setOpenItem={setOpenItem}
             />
         </SectionMenu>

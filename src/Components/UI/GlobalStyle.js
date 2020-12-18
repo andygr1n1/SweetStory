@@ -10,11 +10,15 @@ export const GlobalStyle = createGlobalStyle`
     *::after {
     box-sizing: inherit;  
     }
-
+    
+    span {
+        font-size: inherit;
+    }
+    
     body {
         margin: 0;
         background-color: #f0f0f0;
-        font-family: "Roboto", sans-serif;
+        font-family: 'Roboto Condensed', sans-serif;
         font-size: 20px;
         color: black;
     }

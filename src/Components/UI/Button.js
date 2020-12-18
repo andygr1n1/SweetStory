@@ -1,11 +1,12 @@
 import styled, {css} from "styled-components";
-import trashImage from '../../image/trash.svg'
+import removeItem from '../../image/close-icon.png'
 
 export const Button = styled.button`
+    font-family: 'Roboto Condensed', sans-serif;
     cursor: pointer;
-    font-family: inherit;
     outline: none;
-    border: none;    
+    border: none; 
+    border-radius: 2px;       
     
   ${props => props.btnLogin && css`
     display: flex;
@@ -15,12 +16,12 @@ export const Button = styled.button`
     color: #f0f0f0;
     text-transform: uppercase;
     margin-right: 10px;
-    background: none;
+    background: none;   
   `}
   
     ${props => props.btnModal && css`
-    background-color: #299B01;
-    border: 1px solid #299B01;
+    font-family: 'Anton', sans-serif;
+    background: linear-gradient(90deg, #2cb371 0%, #00b01d 37%, #0d8300 100%);    
     width: 250px;
     height: 65px;
     font-size: 20px;
@@ -29,17 +30,17 @@ export const Button = styled.button`
     transition-property: color, background-color, border-color;
     transition-duration: .3s;
     &:hover {
-        background-color: azure;
-        border-color: #299B01;
-        color: #299B01;
+        background: rgb(156,13,15);        
+        color: snow;
     }  
   `}
 
-    ${props => props.btnTrash && css`
-       width: 24px;
-       height: 24px;
+    ${props => props.btnRemoveItem && css`
+       font-family: 'Anton', sans-serif;
+       width: 15px;
+       height: 15px;
        background-color: transparent;
-       background-image: url(${trashImage});
+       background-image: url(${removeItem});
        background-position: center;
        background-size: cover;
        background-repeat: no-repeat;

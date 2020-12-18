@@ -2,26 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 import {Button} from "../UI/Button";
 import {OrderListItem} from "./OrderListItem";
+import {H2} from "../UI/H2";
 
 const OrderStyled = styled.section`
     position: fixed;
     top: 80px;
     left: 0;
     background: snow;
-    min-width: 380px;
+    max-width: 380px;
+    width: 100%;
     height: calc(100% - 80px);
     z-index: 100;
     box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.25);
     padding: 20px;
     display: flex;
     flex-direction: column;   
-`;
-
-const OrderTitle = styled.h2`
-    text-align: center;
-    margin-bottom: 30px;
-    
-
 `;
 
 const OrderContent = styled.div`
@@ -52,20 +47,20 @@ const EmptyList = styled.p`
   text-align: center;
 `
 
-export const Order = ({orders}) => {
-
+export const Order = ({orders, setOrders}) => {
 
     return (
         <>
             <OrderStyled>
-                <OrderTitle> Your order </OrderTitle>
+                <H2 orderTitle> Your order </H2>
 
                 <OrderContent>
 
                         {orders.length
                             ?
                             <OrderList>
-                                {orders.map(order => <OrderListItem order={order} />)}
+                                {orders.map((order, index) => {
+                                    return <OrderListItem orders={orders} index={index} setOrders={setOrders} order={order} key={`${Math.random().toString(36).substr(2, 9)}`} />})}
                             </OrderList>
                             :
                             <EmptyList>Order list is empty</EmptyList>
