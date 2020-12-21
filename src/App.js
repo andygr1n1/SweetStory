@@ -10,7 +10,6 @@ import {useOrder} from "./Components/Hooks/useOrders";
 export default function App() {
 
     const openItem = useOpenItem();
-    console.log('Item', openItem )
     const orders = useOrder()
 
 

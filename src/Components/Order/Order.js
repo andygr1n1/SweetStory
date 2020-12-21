@@ -47,6 +47,20 @@ const EmptyList = styled.p`
   text-align: center;
 `
 
+const TotalCalc = (orders) => {
+    let priceArray = [];
+    let countArray = [];
+    orders.forEach(order => {
+        priceArray.push(order.price * Number(order.count));
+        countArray.push(order.count)
+    })
+    return {
+        priceAllOrders : priceArray.reduce((result, price) => result + price, 0),
+        countAllOrders : countArray.reduce((result, count) => result + count, 0)
+    }
+
+}
+
 export const Order = ({orders, setOrders}) => {
 
     return (
@@ -70,7 +84,7 @@ export const Order = ({orders, setOrders}) => {
                 </OrderContent>
 
                 <Total>
-                    <span>Total</span><span>5</span><TotalPrice>£999</TotalPrice>
+                    <span>Total</span><span>{TotalCalc(orders).countAllOrders}</span><TotalPrice>{TotalCalc(orders).priceAllOrders.toLocaleString('en-GB', {style: 'currency', currency: 'USD'})}</TotalPrice>
                 </Total>
 
                 <Button btnModal>To order</Button>

@@ -30,7 +30,7 @@ export const Button = styled.button`
     transition-property: color, background-color, border-color;
     transition-duration: .3s;
     &:hover {
-        background: rgb(156,13,15);        
+        background: linear-gradient(90deg, #f50014 0%, #e70036 37%, #d20606 100%);       
         color: snow;
     }  
   `}
@@ -45,4 +45,15 @@ export const Button = styled.button`
        background-size: cover;
        background-repeat: no-repeat;
   `}  
-`
+      
+  ${props => props.ButtonCount && css`
+       //background: linear-gradient(90deg, #2cb371 0%, #00b01d 37%, #0d8300 100%); 
+       color: snow;
+       height: 30px;
+       width: 20px;
+       background: transparent;
+       border: none;
+`}
+  
+
+`;

@@ -20,7 +20,11 @@ ${props => props.orderTitle && css`
 `}
 
 ${props => props.modalHeader && css`
-    font-size: 20px;
+    font-family: 'Stint Ultra Condensed',cursive;
+    font-size: 30px;
+    color: snow;
+    margin: 10px;
+    font-weight: normal;
 `}
 
 

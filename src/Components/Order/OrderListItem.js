@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import {USD_CURRENCY, TOTAL_PRICE_ITEMS} from "../Functions/secondaryFunction";
 import {Button} from "../UI/Button";
 
 const OrderItemStyled = styled.li`
@@ -22,7 +22,7 @@ const Count = styled.span`
 const ItemPrice = styled.span`  
     margin-left: 20px;
     margin-right: 10px;
-    min-width: 65px;
+    min-width: 80px;
     text-align: right;
     flex: 1 1 auto;
 `
@@ -43,12 +43,9 @@ export const OrderListItem = ({order, setOrders, index, orders}) => {
         <OrderItemStyled>
             <ItemName>{order.name}</ItemName>
             <Costs>
-                <Count>${index}</Count>
+                <Count>{order.count}</Count>
                 <ItemPrice>
-                    {order.price.toLocaleString(
-                        'en-GB',
-                        {style: 'currency', currency: 'USD'}
-                    )}
+                    {USD_CURRENCY(TOTAL_PRICE_ITEMS(order))}
                 </ItemPrice>
                 <Button btnRemoveItem onClick={() => {
                     setOrders(orders.filter((order, index) => index !== z));

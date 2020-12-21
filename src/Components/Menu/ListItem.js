@@ -1,6 +1,6 @@
 import React from "react";
 import styled from 'styled-components';
-import bgImg from "../../image/li-background.jpg"
+import {USD_CURRENCY} from "../Functions/secondaryFunction";
 
 const List = styled.ul`
     display:flex;
@@ -50,18 +50,18 @@ const P = styled.p`
   font-family: 'Stint Ultra Condensed', cursive;
 `
 
-export const ListItem = ({ itemList, setOpenItem }) => (
+export const ListItem = ({ itemList, setOpenItem,bgImg }) => (
     <List>
         {itemList.map((item) => (
             <Item
-                key={item.id}
+                key={'_' + Math.random().toString(36).substr(2, 9)}
                 img={item.img}
                 bgImg={bgImg}
                 onClick={ () => setOpenItem(item) }
             >
                 <Img src={item.img} />
                 <P>{item.name}</P>
-                <P>{item.price.toLocaleString('en-GB', {style: 'currency', currency: 'USD'})}</P>
+                <P>{USD_CURRENCY(item.price)}</P>
             </Item>
         ))}
     </List>

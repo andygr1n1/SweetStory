@@ -12,7 +12,7 @@ export const GlobalStyle = createGlobalStyle`
     }
     
     span {
-        font-size: inherit;
+        font: inherit;
     }
     
     body {
@@ -48,6 +48,19 @@ export const GlobalStyle = createGlobalStyle`
     p {
         margin: 0;
         padding: 0;
+    }
+    
+    input, button {
+    font: inherit;
+    }
+    
+    input[type='number']{
+        -moz-appearance: textfield;
+    }
+    
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
     }
     
     .container {

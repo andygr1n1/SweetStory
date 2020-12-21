@@ -1,7 +1,11 @@
 import React from 'react';
+import {useCount} from "../Hooks/useCount";
 import styled from 'styled-components'
 import {Button} from "../UI/Button";
 import {H2} from "../UI/H2";
+import bgImgStandart from "../../image/li-background2.jpg"
+import {CountItem} from "./CountItem";
+import {USD_CURRENCY, TOTAL_PRICE_ITEMS} from "../Functions/secondaryFunction";
 
 const Overlay = styled.div`
       font-family: 'Anton', sans-serif;
@@ -18,7 +22,10 @@ const Overlay = styled.div`
 `;
 
 const Modal = styled.div`
-    background-color: #fff;
+    background-color: #fff;    
+    background-image: url(${({bgImg}) => bgImg});
+    background-size: cover;
+    background-position: center;
     width: 300px;
     height: 500px;
     display: flex;
@@ -39,7 +46,8 @@ const Banner = styled.div`
 
 const ModalHeader = styled.div`
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     margin: 20px 20px ;
 `
@@ -48,33 +56,52 @@ const ModalContent = styled.div`
     flex: 1 1 auto;
 `
 
+
 export const ModalItem = ({openItem, setOpenItem, orders, setOrders}) => {
 
+    const counter = useCount();
+
     const closeModal = (e) => {
-        if(e.target.id === "overlay") {
+        if (e.target.id === "overlay") {
             setOpenItem(null);
         }
     }
 
     const order = {
-        ...openItem
+        ...openItem,
+        count: counter.count
     };
 
+
     const addToOrder = () => {
-        setOrders([...orders, order])
+        let duplicate = false;
+        orders.forEach(orderCollectionItem => {
+            if(orderCollectionItem.name === order.name) {
+                console.log('This item is duplicate', order)
+                duplicate = true;
+                orderCollectionItem.count += order.count;
+                setOrders([...orders])
+            }
+        });
+        if(!duplicate) {
+            setOrders([...orders, order]);
+        }
         setOpenItem(null);
+        duplicate = false;
     }
 
     const {img, name, price} = openItem;
     return (
         <Overlay id={'overlay'} onClick={closeModal}>
-            <Modal>
-                <Banner img={img} />
+            <Modal bgImg={bgImgStandart}>
+                <Banner img={img}/>
                 <ModalHeader>
                     <H2 modalHeader>{name}</H2>
-                    <H2 modalHeader>{price.toLocaleString('en-GB', {style: 'currency', currency: 'USD'})}</H2>
+                    <H2 modalHeader>{USD_CURRENCY(price)}</H2>
                 </ModalHeader>
-                <ModalContent/>
+                <ModalContent>
+                    <CountItem counter={counter} totalPriceItems={TOTAL_PRICE_ITEMS(order)}/>
+                </ModalContent>
                 <Button btnModal onClick={addToOrder}>
                     Add
                 </Button>
