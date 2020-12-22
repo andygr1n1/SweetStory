@@ -8,4 +8,5 @@ export const Banner = styled.div`
     background-image: url("${BannerImg}");
     background-position: center;
     background-size: cover;
+    z-index: 100;
 `

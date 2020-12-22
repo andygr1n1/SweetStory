@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import {USD_CURRENCY, TOTAL_PRICE_ITEMS} from "../Functions/secondaryFunction";
+import {USD_CURRENCY, TOTAL_PRICE_ITEMS, CkeckedToppings} from "../Functions/secondaryFunction";
 import {Button} from "../UI/Button";
+
 
 const OrderItemStyled = styled.li`
     display: flex;
     margin: 15px 0;
-    align-items: center;
+    //align-items: center;
     justify-content: space-between;
     font-size: 18px
 `
@@ -22,34 +23,42 @@ const Count = styled.span`
 const ItemPrice = styled.span`  
     margin-left: 20px;
     margin-right: 10px;
-    min-width: 80px;
-    text-align: right;
-    flex: 1 1 auto;
+    min-width: 100px;
+    text-align: right;    
+    align-items: center;
 `
 
 const Costs = styled.div`
    
    display: flex;
    flex-wrap: nowrap;
-   align-items: center;
+   
     
+`
+
+const ToppingDescription = styled.div`
+   font-family: 'Calligraffitti', cursive;
+   font-size: 16px;
 `
 
 
 export const OrderListItem = ({order, setOrders, index, orders}) => {
     const z = index;
 
+
+
     return(
         <OrderItemStyled>
-            <ItemName>{order.name}</ItemName>
+            <ItemName><div>{order.name}</div><ToppingDescription>{CkeckedToppings(order.topping)}</ToppingDescription></ItemName>
             <Costs>
                 <Count>{order.count}</Count>
                 <ItemPrice>
                     {USD_CURRENCY(TOTAL_PRICE_ITEMS(order))}
+                    <Button btnRemoveItem onClick={() => {
+                        setOrders(orders.filter((order, index) => index !== z));
+                    }}/>
                 </ItemPrice>
-                <Button btnRemoveItem onClick={() => {
-                    setOrders(orders.filter((order, index) => index !== z));
-                }}/>
+
             </Costs>
         </OrderItemStyled>
 

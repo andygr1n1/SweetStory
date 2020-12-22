@@ -5,14 +5,14 @@ const DBSweet = {
             img: "/menu/new-year-6.jpg",
             id: 1,
             price: 39,
-            toppings: ["White Chocolate", "Caramel"],
+            ingredients: ["White Chocolate", "Caramel"],
         },
         {
             name: "Magix",
             img: "/menu/new-year-5.jpg",
             id: 2,
             price: 29.9,
-            toppings: ["Coconut", "White Chocolate"],
+            ingredients: ["Coconut", "White Chocolate"],
         },
 
         {
@@ -20,21 +20,21 @@ const DBSweet = {
             img: "/menu/new-year-3.jpg",
             id: 3,
             price: 29,
-            toppings: ["Banana", "Pineapple"],
+            ingredients: ["Banana", "Pineapple"],
         },
         {
             name: "Happy Cubes",
             img: "/menu/new-year-4.jpg",
             id: 4,
             price: 13,
-            toppings: ["Marmalade"],
+            ingredients: ["Marmalade"],
         },
         {
             name: "Celebrity",
             img: "/menu/new-year-2.jpg",
             id: 5,
             price: 19,
-            toppings: ["Caramel", "Condensed milk"],
+            ingredients: ["Caramel", "Condensed milk"],
         },
 
         {
@@ -42,7 +42,7 @@ const DBSweet = {
             img: "/menu/new-year-1.jpg",
             id: 6,
             price: 25,
-            toppings: ["Dark Chocolate", "Caramel", "Cream"],
+            ingredients: ["Dark Chocolate", "Caramel", "Cream"],
         },
     ],
     desserts: [
@@ -51,35 +51,36 @@ const DBSweet = {
             img: "/menu/dessert1.jpg",
             id: 1,
             price: 29,
-            toppings: ["Chocolate biscuits", "Cream cheese", "Peanut butter", "Peanuts", "Caramel", "Chocolate"],
+            ingredients: ["Chocolate biscuits", "Cream cheese", "Peanut butter", "Peanuts", "Caramel", "Chocolate"],
         },
         {
             name: "Chocolate fondant with ice cream",
             img: "/menu/dessert2.jpg",
             id: 2,
             price: 34,
-            toppings: ["Chocolate", "Caramel", "Ice Cream"],
+            ingredients: ["Chocolate", "Caramel", "Ice Cream"],
+            toppings: ["White Ice Cream", "Chocolate Ice Cream", "Banana Ice Cream"],
         },
         {
             name: "Brownie",
             img: "/menu/dessert3.jpg",
             id: 3,
             price: 24,
-            toppings: ["Grapes", "Kiwi", "Apple", "Pear", "Orange", "Grapefruit", "Ice cream"],
+            ingredients: ["Grapes", "Kiwi", "Apple", "Pear", "Orange", "Grapefruit", "Ice cream"],
         },
         {
             name: "Paradise",
             img: "/menu/dessert4.jpg",
             id: 4,
             price: 19,
-            toppings: ["Cream cheese", "Peanut butter", "Peanuts", "Caramel", "Chocolate"],
+            ingredients: ["Cream cheese", "Peanut butter", "Peanuts", "Caramel", "Chocolate"],
         },
         {
             name: "Strawberry Pike",
             img: "/menu/dessert5.jpg",
             id: 5,
             price: 26,
-            toppings: ["Strawberry", "Chocolate biscuits", "Cream cheese", "Peanut butter", "Peanuts", "Caramel", "Chocolate"],
+            ingredients: ["Strawberry", "Chocolate biscuits", "Cream cheese", "Peanut butter", "Peanuts", "Caramel", "Chocolate"],
         },
         {
             name: "Fruit made dish",
@@ -90,7 +91,7 @@ const DBSweet = {
     ],
     drinks: [
         {
-            name: "berry lemonade",
+            name: "Berry lemonade",
             img: "/menu/berry_lemonade.jpg",
             id: 0,
             price: 19.99,

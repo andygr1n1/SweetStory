@@ -17,6 +17,7 @@ export const Button = styled.button`
     text-transform: uppercase;
     margin-right: 10px;
     background: none;   
+    height: 50px;
   `}
   
     ${props => props.btnModal && css`
@@ -39,6 +40,7 @@ export const Button = styled.button`
        font-family: 'Anton', sans-serif;
        width: 15px;
        height: 15px;
+       margin-left: 5px;
        background-color: transparent;
        background-image: url(${removeItem});
        background-position: center;
@@ -46,13 +48,25 @@ export const Button = styled.button`
        background-repeat: no-repeat;
   `}  
       
-  ${props => props.ButtonCount && css`
-       //background: linear-gradient(90deg, #2cb371 0%, #00b01d 37%, #0d8300 100%); 
+  ${props => props.ButtonCount && css`       
        color: snow;
        height: 30px;
        width: 20px;
        background: transparent;
        border: none;
+`}
+  
+  ${props => props.ModalItemClose && css`
+       position: absolute;
+       right: -50px;
+       width: 30px;
+       height: 30px;
+       background-color: transparent;
+       background-image: url(${removeItem});
+       background-position: center;
+       background-size: cover;
+       background-repeat: no-repeat;
+      
 `}
   
 

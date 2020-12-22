@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import {Button} from "../UI/Button";
-import {USD_CURRENCY, TOTAL_PRICE_ITEMS} from "../Functions/secondaryFunction";
+import {USD_CURRENCY} from "../Functions/secondaryFunction";
 
 
 const CountWrapper = styled.div`
     display: flex;
-    justify-content: space-between;
-    padding: 25px;     
+    justify-content: space-between;    
     color: snow;
 
 `;

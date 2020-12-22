@@ -28,7 +28,9 @@ const Logo = styled.div`
 const H1 = styled.h1`    
     font-size: 30px;
     margin-left: 15px;
-   font-family: 'Satisfy', cursive;
+    font-family: 'Calligraffitti', cursive;
+    color: #e00707;
+    text-shadow: 2px 2px 1px rgb(40,39,39);
 `
 const ImgLogo = styled.img`
     height: 50px;
@@ -36,8 +38,14 @@ const ImgLogo = styled.img`
 `
 
 const LoginImg = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
+`
+
+const LoginText = styled.div`
+  text-shadow: 2px 2px 1px rgb(40,39,39);
+  font-family: 'Stint Ultra Condensed',cursive;
+  font-size: 20px;
 `
 
 
@@ -46,11 +54,11 @@ export const NavBar = () => (
     <NavBarStyled>
           <Logo>
               <ImgLogo src={logoImg} alt="logo"/>
-              <H1>Sweet</H1>
+              <H1>SweetS</H1>
           </Logo>
           <Button btnLogin>
               <LoginImg src={loginImage} alt="login"/>
-              <div style={{marginTop:"5px"}}>Login</div>
+              <LoginText>Log in</LoginText>
           </Button>
     </NavBarStyled>
 )
