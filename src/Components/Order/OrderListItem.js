@@ -45,11 +45,9 @@ const ToppingDescription = styled.div`
 export const OrderListItem = ({order, setOrders, index, orders}) => {
     const z = index;
 
-
-
     return(
         <OrderItemStyled>
-            <ItemName><div>{order.name}</div><ToppingDescription>{CkeckedToppings(order.topping)}</ToppingDescription></ItemName>
+            <ItemName><div>{order.choice ? order.choice :  order.name}</div><ToppingDescription>{CkeckedToppings(order.topping)}</ToppingDescription></ItemName>
             <Costs>
                 <Count>{order.count}</Count>
                 <ItemPrice>

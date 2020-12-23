@@ -52,7 +52,7 @@ const TotalCalc = (orders) => {
     let countArray = [];
     orders.forEach(order => {
         priceArray.push(order.price * Number(order.count));
-        countArray.push(order.count)
+        countArray.push(Number(order.count))
     })
     return {
         priceAllOrders : priceArray.reduce((result, price) => result + price, 0),
@@ -62,7 +62,7 @@ const TotalCalc = (orders) => {
 }
 
 export const Order = ({orders, setOrders}) => {
-
+    orders.forEach(item => console.log(item.choice))
     return (
         <>
             <OrderStyled>

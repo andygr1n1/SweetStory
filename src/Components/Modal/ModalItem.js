@@ -2,14 +2,19 @@ import React from 'react';
 import styled from 'styled-components'
 import {useCount} from "../Hooks/useCount";
 import {Ingredients} from "./Ingredients";
-import {Toppings} from "./Toppings";
+
 import {useToppings} from "../Hooks/useToppings";
+import {Toppings} from "./Toppings";
+
+import {useChoices} from "../Hooks/useChoices";
+import {Choices} from "./Choices";
 
 import {Button} from "../UI/Button";
 import {H2} from "../UI/H2";
 import bgImgStandart from "../../image/li-background2.jpg"
 import {CountItem} from "./CountItem";
 import {CkeckedToppings, TOTAL_PRICE_ITEMS} from "../Functions/secondaryFunction";
+
 
 const Overlay = styled.div`
       font-family: 'Anton', sans-serif;
@@ -69,18 +74,20 @@ export const ModalItem = ({openItem, setOpenItem, orders, setOrders}) => {
 
     const stateCounter = useCount();
     const stateToppings = useToppings(openItem);
+    const stateChoices = useChoices();
 
     const order = {
         ...openItem,
         count: stateCounter.count,
-        topping: stateToppings.toppings
+        topping: stateToppings.toppings,
+        choice: stateChoices.choice,
     };
 
 
     const addToOrder = () => {
         let duplicate = false;
         orders.forEach(orderCollectionItem => {
-            if (orderCollectionItem.name === order.name && CkeckedToppings(orderCollectionItem.topping) === CkeckedToppings(order.topping)) {
+            if (orderCollectionItem.name === order.name && CkeckedToppings(orderCollectionItem.topping) === CkeckedToppings(order.topping) && orderCollectionItem.choice === order.choice ) {
                 console.log('This item is duplicate', order)
                 duplicate = true;
                 orderCollectionItem.count += order.count;
@@ -93,6 +100,7 @@ export const ModalItem = ({openItem, setOpenItem, orders, setOrders}) => {
         }
         setOpenItem(null);
         duplicate = false;
+
     }
 
     const closeModal = (e) => {
@@ -101,7 +109,7 @@ export const ModalItem = ({openItem, setOpenItem, orders, setOrders}) => {
         }
     }
 
-    const {img, name, ingredients, toppings} = openItem;
+    const {img, name, ingredients, toppings, choices} = openItem;
 
     return (
         <Overlay id={'overlay'} onClick={closeModal}>
@@ -112,11 +120,12 @@ export const ModalItem = ({openItem, setOpenItem, orders, setOrders}) => {
                     <H2 modalHeader>{name}</H2>
                     {ingredients && <Ingredients ingredients={ingredients}/>}
                     {toppings && <Toppings {...stateToppings} />}
+                    {choices && <Choices {...stateChoices} openItem={openItem}/>}
                 </ModalHeader>
                 <ModalContent>
                     <CountItem counter={stateCounter} totalPriceItems={TOTAL_PRICE_ITEMS(order)}/>
                 </ModalContent>
-                <Button btnModal onClick={addToOrder}>
+                <Button btnModal onClick={addToOrder} disabled={order.choices && !order.choice}>
                     Add
                 </Button>
             </Modal>

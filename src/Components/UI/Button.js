@@ -22,17 +22,23 @@ export const Button = styled.button`
   
     ${props => props.btnModal && css`
     font-family: 'Anton', sans-serif;
-    background: linear-gradient(90deg, #2cb371 0%, #00b01d 37%, #0d8300 100%);    
+    background: #dcf5dc;    
     width: 250px;
     height: 65px;
     font-size: 20px;
-    color: snow;
+    color: #2cb371;
+    border: 1px solid #2cb371;
     margin: 0 auto 40px;
     transition-property: color, background-color, border-color;
     transition-duration: .3s;
     &:hover {
-        background: linear-gradient(90deg, #f50014 0%, #e70036 37%, #d20606 100%);       
+        background: linear-gradient(90deg, #2cb371 0%, #00b01d 37%, #0d8300 100%);           
         color: snow;
+    }
+    &:disabled {
+        background: linear-gradient(90deg, #acacac 0%, #fff7f9 50%, #b7b7b7 100%);       
+        color: #c8c8c8;
+        cursor: default;
     }  
   `}
 

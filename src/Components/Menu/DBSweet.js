@@ -97,23 +97,30 @@ const DBSweet = {
             price: 19.99,
         },
       {
-        name: "Cucumber-chamomile lemonade",
-        img: "/menu/Cucumber_chamomile_lemonade.jpg",
-        id: 0,
-        price: 19.99,
+          name: "Cucumber-chamomile lemonade",
+          img: "/menu/Cucumber_chamomile_lemonade.jpg",
+          id: 1,
+          price: 19.99,
       },
-      {
-        name: "Sea buckthorn lemonade",
-        img: "/menu/sea_buckthorn_lemonade.jpg",
-        id: 1,
-        price: 19.99,
-      },
-      {
-        name: "Strawberry lemonade",
-        img: "/menu/strawberry_lemonade.jpg",
-        id: 2,
-        price: 19.99,
-      },
+        {
+            name: "Sea buckthorn lemonade",
+            img: "/menu/sea_buckthorn_lemonade.jpg",
+            id: 2,
+            price: 19.99,
+        },
+        {
+            name: "Strawberry lemonade",
+            img: "/menu/strawberry_lemonade.jpg",
+            id: 3,
+            price: 19.99,
+        },
+        {
+            name: "Fresh Drinks",
+            img: "/menu/fresh-drinks.jpg",
+            id: 4,
+            price: 9.99,
+            choices: ["Coca-cola", "Pepsi", "Fanta", "Sprite", "7Up", "Mirinda"]
+        },
     ],
     cookies: [
         {
