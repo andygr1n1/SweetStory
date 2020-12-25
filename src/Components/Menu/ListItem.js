@@ -50,14 +50,18 @@ const P = styled.p`
   font-family: 'Stint Ultra Condensed', cursive;
 `
 
-export const ListItem = ({ itemList, setOpenItem,bgImg }) => (
+export const ListItem = ({ itemList, setOpenItem, bgImg, stateCounter, stateChoices }) => (
     <List>
         {itemList.map((item) => (
             <Item
                 key={'_' + Math.random().toString(36).substr(2, 9)}
                 img={item.img}
                 bgImg={bgImg}
-                onClick={ () => setOpenItem(item) }
+                onClick={ () => {
+                    setOpenItem(item);
+                    stateCounter.setCount(1)
+                    stateChoices.setChoice("")
+                } }
             >
                 <Img src={item.img} />
                 <P>{item.name}</P>

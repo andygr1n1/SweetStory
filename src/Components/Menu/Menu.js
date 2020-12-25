@@ -39,7 +39,7 @@ const ParallaxImg2 = styled.img`
     z-index: -9;    
 `
 
-export const Menu = ({ setOpenItem }) => (
+export const Menu = ({setOpenItem, stateCounter, stateChoices}) => (
     <MenuStyled>
         <Banner/>
         <SectionMenu>
@@ -48,6 +48,8 @@ export const Menu = ({ setOpenItem }) => (
                 itemList={DBSweet.newYear}
                 setOpenItem={setOpenItem}
                 bgImg={bgImgNewYear}
+                stateCounter={stateCounter}
+                stateChoices={stateChoices}
             />
         </SectionMenu>
                     <RellaxWrapper speed={2} center={true}>
@@ -59,6 +61,8 @@ export const Menu = ({ setOpenItem }) => (
                 itemList={DBSweet.desserts}
                 setOpenItem={setOpenItem}
                 bgImg={bgImgStandart}
+                stateCounter={stateCounter}
+                stateChoices={stateChoices}
             />
         </SectionMenu>
                     <RellaxWrapper speed={2} center={false}>
@@ -71,6 +75,8 @@ export const Menu = ({ setOpenItem }) => (
                 itemList={DBSweet.cookies}
                 setOpenItem={setOpenItem}
                 bgImg={bgImgStandart}
+                stateCounter={stateCounter}
+                stateChoices={stateChoices}
             />
         </SectionMenu>
         <SectionMenu>
@@ -79,6 +85,8 @@ export const Menu = ({ setOpenItem }) => (
                 itemList={DBSweet.drinks}
                 setOpenItem={setOpenItem}
                 bgImg={bgImgStandart}
+                stateCounter={stateCounter}
+                stateChoices={stateChoices}
             />
         </SectionMenu>
 

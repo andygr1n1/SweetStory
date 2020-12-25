@@ -1,12 +1,10 @@
 import React from 'react';
 import styled from 'styled-components'
-import {useCount} from "../Hooks/useCount";
 import {Ingredients} from "./Ingredients";
 
 import {useToppings} from "../Hooks/useToppings";
 import {Toppings} from "./Toppings";
 
-import {useChoices} from "../Hooks/useChoices";
 import {Choices} from "./Choices";
 
 import {Button} from "../UI/Button";
@@ -70,11 +68,12 @@ const ModalContent = styled.div`
 `
 
 
-export const ModalItem = ({openItem, setOpenItem, orders, setOrders}) => {
+export const ModalItem = ({openItem, setOpenItem, orders, setOrders, stateCounter, stateChoices}) => {
 
-    const stateCounter = useCount();
+
     const stateToppings = useToppings(openItem);
-    const stateChoices = useChoices();
+    // const stateChoices = useChoices();
+    const isEdit = openItem.index > -1;
 
     const order = {
         ...openItem,
@@ -82,6 +81,13 @@ export const ModalItem = ({openItem, setOpenItem, orders, setOrders}) => {
         topping: stateToppings.toppings,
         choice: stateChoices.choice,
     };
+
+    const editOrder = () => {
+        const newOrders = [...orders];
+        newOrders[openItem.index] = order;
+        setOrders(newOrders);
+
+    }
 
 
     const addToOrder = () => {
@@ -104,7 +110,7 @@ export const ModalItem = ({openItem, setOpenItem, orders, setOrders}) => {
     }
 
     const closeModal = (e) => {
-        if (e.target.id === "overlay" || e.target.id === "ModalItemClose") {
+        if (e.target.id === "overlay" || e.target.id === "ModalItemClose" || e.target.id === "btn_Add_Edit") {
             setOpenItem(null);
         }
     }
@@ -120,13 +126,13 @@ export const ModalItem = ({openItem, setOpenItem, orders, setOrders}) => {
                     <H2 modalHeader>{name}</H2>
                     {ingredients && <Ingredients ingredients={ingredients}/>}
                     {toppings && <Toppings {...stateToppings} />}
-                    {choices && <Choices {...stateChoices} openItem={openItem}/>}
+                    {choices && <Choices {...stateChoices} order={order} openItem={openItem}/>}
                 </ModalHeader>
                 <ModalContent>
-                    <CountItem counter={stateCounter} totalPriceItems={TOTAL_PRICE_ITEMS(order)}/>
+                    <CountItem order={order} counter={stateCounter} totalPriceItems={TOTAL_PRICE_ITEMS(order)}/>
                 </ModalContent>
-                <Button btnModal onClick={addToOrder} disabled={order.choices && !order.choice}>
-                    Add
+                <Button id='btn_Add_Edit' btnModal onClick={isEdit ? editOrder : addToOrder} disabled={order.choices && !order.choice}>
+                    {isEdit ? `Edit` : `Add`}
                 </Button>
             </Modal>
         </Overlay>

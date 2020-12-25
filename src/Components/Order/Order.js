@@ -61,8 +61,7 @@ const TotalCalc = (orders) => {
 
 }
 
-export const Order = ({orders, setOrders}) => {
-    orders.forEach(item => console.log(item.choice))
+export const Order = ({orders, setOrders, setOpenItem, stateCounter, stateChoices}) => {
     return (
         <>
             <OrderStyled>
@@ -74,7 +73,7 @@ export const Order = ({orders, setOrders}) => {
                             ?
                             <OrderList>
                                 {orders.map((order, index) => {
-                                    return <OrderListItem orders={orders} index={index} setOrders={setOrders} order={order} key={`${Math.random().toString(36).substr(2, 9)}`} />})}
+                                    return <OrderListItem stateChoices={stateChoices} stateCounter={stateCounter} setOpenItem={setOpenItem} orders={orders} index={index} setOrders={setOrders} order={order} key={`${Math.random().toString(36).substr(2, 9)}`} />})}
                             </OrderList>
                             :
                             <EmptyList>Order list is empty</EmptyList>

@@ -7,7 +7,9 @@ const getTopping = toppings => toppings.map(item => ({
 
 export function useToppings(openItem) {
     let toppingsList;
-    openItem.toppings ? toppingsList = openItem.toppings: toppingsList = [] ;
+    openItem.toppings
+        ? toppingsList = openItem.toppings
+        : toppingsList = [];
 
     const [toppings, setToppings] = useState(getTopping(toppingsList));
 

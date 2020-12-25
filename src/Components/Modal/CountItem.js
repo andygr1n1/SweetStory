@@ -36,7 +36,9 @@ const TotalPrice = styled.span`
 `
 
 export function CountItem({counter, totalPriceItems}) {
-    const {count, setCount, onChange} = counter;
+    let {count, setCount, onChange} = counter;
+
+
 
     return (
         <CountWrapper>
