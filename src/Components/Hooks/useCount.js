@@ -1,13 +1,7 @@
 import { useState } from 'react';
 
-export function useCount(orderListItemCount) {
-    console.log(orderListItemCount)
-    let initial;
-    orderListItemCount
-        ? initial = orderListItemCount
-        : initial =  1;
-
-    const [count, setCount] = useState("");
+export function useCount(startCount) {
+    const [count, setCount] = useState(startCount || 1);
 
     const onChange = e => setCount(e.target.value);
 

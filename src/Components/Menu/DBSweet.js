@@ -27,7 +27,8 @@ const DBSweet = {
             img: "/menu/new-year-4.jpg",
             id: 4,
             price: 13,
-            ingredients: ["Marmalade"],
+            ingredients: ["Marmalade, Fruits"],
+            foodComponents: ["Random", "Orange", "Banana", "Apricot", "Grapefruit"],
         },
         {
             name: "Celebrity",

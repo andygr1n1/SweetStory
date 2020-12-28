@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import styled from 'styled-components';
-import {USD_CURRENCY, TOTAL_PRICE_ITEMS, CkeckedToppings} from "../Functions/secondaryFunction";
+import {TOTAL_PRICE_ITEMS, USD_CURRENCY} from "../Functions/secondaryFunction";
 import {Button} from "../UI/Button";
 
 
@@ -13,11 +13,7 @@ const OrderItemStyled = styled.li`
 `
 
 const ItemName = styled.span`
-    padding-right: 10px;    
-    
-`
-
-const Count = styled.span`  
+    padding-right: 10px;
 `
 
 const ItemPrice = styled.span`  
@@ -28,12 +24,9 @@ const ItemPrice = styled.span`
     align-items: center;
 `
 
-const Costs = styled.div`
-   
+const Costs = styled.div`   
    display: flex;
    flex-wrap: nowrap;
-   
-    
 `
 
 const ToppingDescription = styled.div`
@@ -41,30 +34,41 @@ const ToppingDescription = styled.div`
    font-size: 16px;
 `
 
-const editWindow = (stateCounter, setOpenItem, order, index, stateChoices) => {
-    stateCounter.setCount(order.count)
+const FoodComponentsDescription = styled.div`
+   font-family: 'Calligraffitti', cursive;
+   font-size: 14px;
+`
+
+const editWindow = (setOpenItem, order, index, stateChoices, stateTopping) => {
     setOpenItem({...order, index});
     stateChoices.setChoice(order.choice ? order.choice : "");
+    stateTopping.setTopping(order.topping ? order.topping : "")
 }
 
 
-export const OrderListItem = ({order, setOrders, index, orders, setOpenItem, stateCounter, stateChoices}) => {
+export const OrderListItem = ({order, setOrders, index, orders, setOpenItem,stateChoices, stateTopping}) => {
+    const $foodComponents = order.fComponents.filter(item => item.checked)
+        .map(item => item.name)
+        .join(', ');
 
-    return(
-        <OrderItemStyled onClick={(e) => {
-            if (e.target.id !== "remove_me") {
-                editWindow(stateCounter, setOpenItem, order, index, stateChoices);
+    const btnRemoveItem = useRef(null);
+
+    return (
+        <OrderItemStyled onClick={(e) => e.target === btnRemoveItem.current
+            ?  setOrders([...orders].filter((order, i) => i !== index))
+            : editWindow(setOpenItem, order, index, stateChoices, stateTopping)
             }
-
-        }}>
-            <ItemName><div>{order.choice ? order.choice :  order.name}</div><ToppingDescription>{CkeckedToppings(order.topping)}</ToppingDescription></ItemName>
+        >
+            <ItemName>
+                <div>{order.choice ? order.choice : order.name}</div>
+                <FoodComponentsDescription>{order.fComponents && $foodComponents}</FoodComponentsDescription>
+                <ToppingDescription>{order.topping}</ToppingDescription>
+            </ItemName>
             <Costs>
-                <Count>{order.count}</Count>
+                <div>{order.count}</div>
                 <ItemPrice>
                     {USD_CURRENCY(TOTAL_PRICE_ITEMS(order))}
-                    <Button id="remove_me" btnRemoveItem onClick={() => {
-                        setOrders(orders.filter((order, i) => i !== index));
-                    }}/>
+                    <Button btnRemoveItem ref={btnRemoveItem} />
                 </ItemPrice>
 
             </Costs>

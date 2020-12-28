@@ -20,6 +20,18 @@ export const Button = styled.button`
     height: 50px;
   `}
   
+    ${props => props.btnLogout && css`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center; 
+    color: #f0f0f0;
+    text-transform: uppercase;
+    margin-right: 10px;
+    background: none;   
+    height: 50px;
+  `}
+  
     ${props => props.btnModal && css`
     font-family: 'Anton', sans-serif;
     background: #dcf5dc;    
@@ -38,11 +50,13 @@ export const Button = styled.button`
     &:disabled {
         background: linear-gradient(90deg, #acacac 0%, #fff7f9 50%, #b7b7b7 100%);       
         color: #c8c8c8;
+        border: 1px solid #c8c8c8;
         cursor: default;
+           
     }  
   `}
 
-    ${props => props.btnRemoveItem && css`
+    ${(props) => props.btnRemoveItem  && css`
        font-family: 'Anton', sans-serif;
        width: 15px;
        height: 15px;

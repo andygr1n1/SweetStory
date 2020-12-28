@@ -18,6 +18,7 @@ export const ChooserLabel = styled.label`
     font: inherit;
     color: inherit;
 `
+
 export const ChooserCheckbox = styled.input`
     cursor: pointer;
     margin-right: 10px;    

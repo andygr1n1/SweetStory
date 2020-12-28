@@ -8,9 +8,6 @@ export function useChoices() {
         setChoice(e.target.value)
     }
 
-    function saveChoice(element) {
-        setChoice(element)
-    }
 
-    return {choice, checkChoice, saveChoice, setChoice}
+    return {choice, setChoice, checkChoice}
 }

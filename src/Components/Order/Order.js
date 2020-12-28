@@ -58,10 +58,20 @@ const TotalCalc = (orders) => {
         priceAllOrders : priceArray.reduce((result, price) => result + price, 0),
         countAllOrders : countArray.reduce((result, count) => result + count, 0)
     }
-
 }
 
-export const Order = ({orders, setOrders, setOpenItem, stateCounter, stateChoices}) => {
+
+
+export const Order = ({orders, setOrders, setOpenItem, stateCounter, stateChoices, stateTopping, authentication, logIn}) => {
+
+    const saveOrder = (authentication, orders, logIn) => {
+        if (!authentication) {
+            logIn();
+        } else {
+            (orders.forEach(order => console.log(order)))
+        }
+    };
+
     return (
         <>
             <OrderStyled>
@@ -73,11 +83,10 @@ export const Order = ({orders, setOrders, setOpenItem, stateCounter, stateChoice
                             ?
                             <OrderList>
                                 {orders.map((order, index) => {
-                                    return <OrderListItem stateChoices={stateChoices} stateCounter={stateCounter} setOpenItem={setOpenItem} orders={orders} index={index} setOrders={setOrders} order={order} key={`${Math.random().toString(36).substr(2, 9)}`} />})}
+                                    return <OrderListItem stateTopping={stateTopping} stateChoices={stateChoices} stateCounter={stateCounter} setOpenItem={setOpenItem} orders={orders} index={index} setOrders={setOrders} order={order} key={`${Math.random().toString(36).substr(2, 9)}`} />})}
                             </OrderList>
                             :
                             <EmptyList>Order list is empty</EmptyList>
-
                         }
 
                 </OrderContent>
@@ -86,7 +95,7 @@ export const Order = ({orders, setOrders, setOpenItem, stateCounter, stateChoice
                     <span>Total</span><span>{TotalCalc(orders).countAllOrders}</span><TotalPrice>{TotalCalc(orders).priceAllOrders.toLocaleString('en-GB', {style: 'currency', currency: 'USD'})}</TotalPrice>
                 </Total>
 
-                <Button btnModal>To order</Button>
+                <Button btnModal onClick={() => {saveOrder(authentication, orders, logIn)}}>To order</Button>
             </OrderStyled>
         </>
 )

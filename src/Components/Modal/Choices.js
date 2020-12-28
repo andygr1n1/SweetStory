@@ -3,10 +3,7 @@ import {ChooserCheckbox, ChooserLabel, ChooserWrap} from "../UI/Chooser";
 
 
 
-export function Choices({ openItem, choice, checkChoice, saveChoice, order}) {
-
-    order && saveChoice(order.choice);
-
+export function Choices({ openItem, choice, checkChoice}) {
     return (
         <ChooserWrap>
             {openItem.choices.map((item, i) => (

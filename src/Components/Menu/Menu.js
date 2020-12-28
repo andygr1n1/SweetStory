@@ -17,7 +17,6 @@ const MenuStyled = styled.main`
     background-image: url(${bgImg});
     margin: 80px 0 0 380px;
 `
-
 const SectionMenu = styled.section`
     padding: 30px;
     display: flex;
@@ -25,7 +24,6 @@ const SectionMenu = styled.section`
     justify-content: center; 
     z-index: 9;    
 `
-
 const ParallaxImg1 = styled.img`
     position: absolute;
     right: -10px;
@@ -39,7 +37,7 @@ const ParallaxImg2 = styled.img`
     z-index: -9;    
 `
 
-export const Menu = ({setOpenItem, stateCounter, stateChoices}) => (
+export const Menu = ({setOpenItem, stateChoices, stateTopping}) => (
     <MenuStyled>
         <Banner/>
         <SectionMenu>
@@ -48,8 +46,8 @@ export const Menu = ({setOpenItem, stateCounter, stateChoices}) => (
                 itemList={DBSweet.newYear}
                 setOpenItem={setOpenItem}
                 bgImg={bgImgNewYear}
-                stateCounter={stateCounter}
                 stateChoices={stateChoices}
+                stateTopping={stateTopping}
             />
         </SectionMenu>
                     <RellaxWrapper speed={2} center={true}>
@@ -61,8 +59,8 @@ export const Menu = ({setOpenItem, stateCounter, stateChoices}) => (
                 itemList={DBSweet.desserts}
                 setOpenItem={setOpenItem}
                 bgImg={bgImgStandart}
-                stateCounter={stateCounter}
                 stateChoices={stateChoices}
+                stateTopping={stateTopping}
             />
         </SectionMenu>
                     <RellaxWrapper speed={2} center={false}>
@@ -75,8 +73,8 @@ export const Menu = ({setOpenItem, stateCounter, stateChoices}) => (
                 itemList={DBSweet.cookies}
                 setOpenItem={setOpenItem}
                 bgImg={bgImgStandart}
-                stateCounter={stateCounter}
                 stateChoices={stateChoices}
+                stateTopping={stateTopping}
             />
         </SectionMenu>
         <SectionMenu>
@@ -85,8 +83,8 @@ export const Menu = ({setOpenItem, stateCounter, stateChoices}) => (
                 itemList={DBSweet.drinks}
                 setOpenItem={setOpenItem}
                 bgImg={bgImgStandart}
-                stateCounter={stateCounter}
                 stateChoices={stateChoices}
+                stateTopping={stateTopping}
             />
         </SectionMenu>
 

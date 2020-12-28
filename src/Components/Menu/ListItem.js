@@ -50,7 +50,7 @@ const P = styled.p`
   font-family: 'Stint Ultra Condensed', cursive;
 `
 
-export const ListItem = ({ itemList, setOpenItem, bgImg, stateCounter, stateChoices }) => (
+export const ListItem = ({ itemList, setOpenItem, bgImg, stateChoices, stateTopping }) => (
     <List>
         {itemList.map((item) => (
             <Item
@@ -59,8 +59,8 @@ export const ListItem = ({ itemList, setOpenItem, bgImg, stateCounter, stateChoi
                 bgImg={bgImg}
                 onClick={ () => {
                     setOpenItem(item);
-                    stateCounter.setCount(1)
                     stateChoices.setChoice("")
+                    stateTopping.setTopping("")
                 } }
             >
                 <Img src={item.img} />

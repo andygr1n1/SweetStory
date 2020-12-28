@@ -1,27 +1,14 @@
 import {useState} from 'react';
 
-const getTopping = toppings => toppings.map(item => ({
-    name: item,
-    checked: false
-}))
+export function useToppings() {
 
-export function useToppings(openItem) {
-    let toppingsList;
-    openItem.toppings
-        ? toppingsList = openItem.toppings
-        : toppingsList = [];
+    const [selectedTopping, setTopping] = useState("");
 
-    const [toppings, setToppings] = useState(getTopping(toppingsList));
 
-    const checkToppings = index => {
-        setToppings(toppings.map((item, i) => {
-            const newItem = {...item}
-            if (i === index) {
-                newItem.checked = !newItem.checked
-            }
-            return newItem;
-        }))
+    function checkTopping(e) {
+        setTopping(e.target.value)
+        console.log('check', selectedTopping)
     }
 
-    return {toppings, checkToppings}
+    return {selectedTopping, checkTopping, setTopping}
 }

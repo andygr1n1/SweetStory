@@ -2,16 +2,36 @@ import React from 'react';
 import {ChooserCheckbox, ChooserLabel, ChooserWrap} from "../UI/Chooser";
 
 
-export function Toppings({toppings, checkToppings}) {
-
+export function Toppings({selectedTopping, checkTopping, openItem}) {
     return (
         <ChooserWrap>
-            {toppings.map((topping, i) => (
+            {openItem.toppings.map((topping, i) => (
                 <ChooserLabel key={i}>
-                    <ChooserCheckbox name="radioButton" type="radio" checked={topping.checked}
-                                     onChange={() => checkToppings(i)}/>{topping.name}
+                    <ChooserCheckbox
+                        value={topping}
+                        name="radioButton"
+                        type="radio"
+                        checked={topping === selectedTopping}
+                        onChange={checkTopping}
+                    />
+                        {topping}
                 </ChooserLabel>
             ))}
         </ChooserWrap>
     )
 }
+
+//                 <ChooserLabel key={i}>
+//                     <ChooserCheckbox
+//                         type="radio"
+//                         name="radioButton"
+//                         value={topping.name}
+//                         checked={topping.name === topping}
+//                         onChange={checkToppings}
+//                     />
+//                     {topping.name}
+//                 </ChooserLabel>
+//             ))}
+//         </ChooserWrap>
+//     )
+// }

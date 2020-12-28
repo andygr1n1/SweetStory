@@ -46,19 +46,33 @@ const LoginText = styled.div`
   text-shadow: 2px 2px 1px rgb(40,39,39);
   font-family: 'Stint Ultra Condensed',cursive;
   font-size: 20px;
+  margin: 0 5px;
+  color: #e0e0e0;
+`
+const LogInDataUi = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+     color: #e0e0e0;
 `
 
-
-
-export const NavBar = () => (
+export const NavBar = ({authentication, logIn, logOut}) => (
     <NavBarStyled>
-          <Logo>
-              <ImgLogo src={logoImg} alt="logo"/>
-              <H1>SweetS</H1>
-          </Logo>
-          <Button btnLogin>
-              <LoginImg src={loginImage} alt="login"/>
-              <LoginText>Log in</LoginText>
-          </Button>
+        <Logo>
+            <ImgLogo src={logoImg} alt="logo"/>
+            <H1>SweetStory</H1>
+        </Logo>
+        {authentication
+            ? <Button btnLogout>
+                    <LogInDataUi>
+                        <LoginImg src={authentication.photoURL} alt={authentication.displayName}/><LoginText>{authentication.displayName}</LoginText>
+                    </LogInDataUi>
+                <LoginText onClick={logOut}>Log out</LoginText>
+            </Button>
+            : <Button btnLogin onClick={logIn}>
+                <LoginImg src={loginImage} alt="login"/>
+                <LoginText>Log in</LoginText>
+            </Button>}
     </NavBarStyled>
 )
