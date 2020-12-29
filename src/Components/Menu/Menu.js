@@ -1,7 +1,6 @@
 import React from "react";
 import {useFetch} from "../Hooks/useFetch";
 import styled from 'styled-components';
-// import DBSweet from "./DBSweet";
 import {ListItem} from "./ListItem";
 import {Banner} from "./Banner";
 import {H2} from "../UI/H2";
@@ -38,9 +37,8 @@ const ParallaxImg2 = styled.img`
     z-index: -9;    
 `
 
-export const Menu = ({setOpenItem, stateChoices, stateTopping}) => {
+export const Menu = ({setOpenItem, stateChoices, stateTopping, firebaseDatabase}) => {
     const res = useFetch();
-    console.log('res', res)
     const DBSweet = res.response;
     console.log(DBSweet)
 
