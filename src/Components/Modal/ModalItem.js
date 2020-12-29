@@ -66,7 +66,6 @@ export const ModalItem = ({openItem, setOpenItem, orders, setOrders, stateChoice
     const isEdit = openItem.index > -1;
     const stateFoodComponents = useFoodComponents(openItem);
     const stateCounter = useCount(openItem.count);
-
     const order = {
         ...openItem,
         count: stateCounter.count,
@@ -80,6 +79,7 @@ export const ModalItem = ({openItem, setOpenItem, orders, setOrders, stateChoice
         newOrders[openItem.index] = order;
         setOrders(newOrders);
         setOpenItem(null);
+
     }
 
 
@@ -98,7 +98,6 @@ export const ModalItem = ({openItem, setOpenItem, orders, setOrders, stateChoice
         }
         setOpenItem(null);
         duplicate = false;
-
     }
 
     const closeModal = (e) => {
@@ -113,8 +112,8 @@ export const ModalItem = ({openItem, setOpenItem, orders, setOrders, stateChoice
                 return !!(order.foodComponents && order.fComponents.filter(item => item.checked).length === 0);
     }
 
-    const {img, name, ingredients, toppings, choices, foodComponents} = openItem;
 
+    const {img, name, ingredients, toppings, choices, foodComponents} = openItem;
     return (
         <Overlay id={'overlay'} onClick={closeModal}>
             <Modal bgImg={bgImgStandart}>

@@ -1,0 +1,21 @@
+import {useEffect, useState} from 'react';
+
+export const useFetch = () => {
+
+    const [response, setResponse] = useState(null);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const json = await fetch('DBSweetStory.json');
+                const res = await json.json();
+                setResponse(res)
+            } catch (err) {
+                setError(err);
+            }
+        })();
+    }, []);
+
+    return {response, error};
+}

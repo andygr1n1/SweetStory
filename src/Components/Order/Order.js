@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {Button} from "../UI/Button";
 import {OrderListItem} from "./OrderListItem";
 import {H2} from "../UI/H2";
+import {projection} from "../Functions/secondaryFunction";
 
 const OrderStyled = styled.section`
     position: fixed;
@@ -61,14 +62,38 @@ const TotalCalc = (orders) => {
 }
 
 
+const rulesData = {
+    name: ['name'],
+    price: ['price'],
+    count: ['count'],
+    topping: ['topping', item => item ? item : "Data not set"],
+    choice: ['choice', item => item ? item : "Data not set"],
+    fComponents:  [
+        'fComponents', arr => arr.filter(x => x.checked).map(x => x.name),
+        arr => arr.length ? arr : "Data not set",
+    ],
 
-export const Order = ({orders, setOrders, setOpenItem, stateCounter, stateChoices, stateTopping, authentication, logIn}) => {
+}
+
+export const Order = ({orders, setOrders, setOpenItem, stateCounter, stateChoices, stateTopping, authentication, logIn, firebaseDatabase}) => {
+    const dataBase =  firebaseDatabase();
+    const sendOrder = () => {
+        const newOrder = orders.map(projection(rulesData));
+        dataBase.ref('orders').push().set({
+            clientName: authentication.displayName,
+            email: authentication.email,
+            order: newOrder,
+        });
+
+        setOrders([]);
+    }
 
     const saveOrder = (authentication, orders, logIn) => {
         if (!authentication) {
             logIn();
         } else {
-            (orders.forEach(order => console.log(order)))
+            console.log('sent')
+            sendOrder()
         }
     };
 

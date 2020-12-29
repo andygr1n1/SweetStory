@@ -1,6 +1,7 @@
 import React from "react";
+import {useFetch} from "../Hooks/useFetch";
 import styled from 'styled-components';
-import DBSweet from "./DBSweet";
+// import DBSweet from "./DBSweet";
 import {ListItem} from "./ListItem";
 import {Banner} from "./Banner";
 import {H2} from "../UI/H2";
@@ -37,58 +38,73 @@ const ParallaxImg2 = styled.img`
     z-index: -9;    
 `
 
-export const Menu = ({setOpenItem, stateChoices, stateTopping}) => (
-    <MenuStyled>
-        <Banner/>
-        <SectionMenu>
-            <H2 newYearOffer>New Year Offer</H2>
-            <ListItem
-                itemList={DBSweet.newYear}
-                setOpenItem={setOpenItem}
-                bgImg={bgImgNewYear}
-                stateChoices={stateChoices}
-                stateTopping={stateTopping}
-            />
-        </SectionMenu>
+export const Menu = ({setOpenItem, stateChoices, stateTopping}) => {
+    const res = useFetch();
+    console.log('res', res)
+    const DBSweet = res.response;
+    console.log(DBSweet)
+
+    return (
+        <MenuStyled>
+            <Banner/>
+            {
+                res.response
+                    ? <>
+                    <SectionMenu>
+                        <H2 newYearOffer>New Year Offer</H2>
+                        <ListItem
+                            itemList={DBSweet.newYear}
+                            setOpenItem={setOpenItem}
+                            bgImg={bgImgNewYear}
+                            stateChoices={stateChoices}
+                            stateTopping={stateTopping}
+                        />
+                    </SectionMenu>
                     <RellaxWrapper speed={2} center={true}>
-                    <ParallaxImg1 src={parallaxImg1} alt="parallax"/>
+                        <ParallaxImg1 src={parallaxImg1} alt="parallax"/>
                     </RellaxWrapper>
-        <SectionMenu>
-            <H2 menuHeader>Desserts</H2>
-            <ListItem
-                itemList={DBSweet.desserts}
-                setOpenItem={setOpenItem}
-                bgImg={bgImgStandart}
-                stateChoices={stateChoices}
-                stateTopping={stateTopping}
-            />
-        </SectionMenu>
+                    <SectionMenu>
+                        <H2 menuHeader>Desserts</H2>
+                        <ListItem
+                            itemList={DBSweet.desserts}
+                            setOpenItem={setOpenItem}
+                            bgImg={bgImgStandart}
+                            stateChoices={stateChoices}
+                            stateTopping={stateTopping}
+                        />
+                    </SectionMenu>
                     <RellaxWrapper speed={2} center={false}>
                         <ParallaxImg2 src={parallaxImg2} alt="parallax"/>
                     </RellaxWrapper>
-        <SectionMenu>
+                    <SectionMenu>
 
-            <H2 menuHeader>Cookies</H2>
-            <ListItem
-                itemList={DBSweet.cookies}
-                setOpenItem={setOpenItem}
-                bgImg={bgImgStandart}
-                stateChoices={stateChoices}
-                stateTopping={stateTopping}
-            />
-        </SectionMenu>
-        <SectionMenu>
-            <H2 menuHeader>Drinks</H2>
-            <ListItem
-                itemList={DBSweet.drinks}
-                setOpenItem={setOpenItem}
-                bgImg={bgImgStandart}
-                stateChoices={stateChoices}
-                stateTopping={stateTopping}
-            />
-        </SectionMenu>
+                        <H2 menuHeader>Cookies</H2>
+                        <ListItem
+                            itemList={DBSweet.cookies}
+                            setOpenItem={setOpenItem}
+                            bgImg={bgImgStandart}
+                            stateChoices={stateChoices}
+                            stateTopping={stateTopping}
+                        />
+                    </SectionMenu>
+                    <SectionMenu>
+                        <H2 menuHeader>Drinks</H2>
+                        <ListItem
+                            itemList={DBSweet.drinks}
+                            setOpenItem={setOpenItem}
+                            bgImg={bgImgStandart}
+                            stateChoices={stateChoices}
+                            stateTopping={stateTopping}
+                        />
+                    </SectionMenu>
+                    </>
+                    : res.error
+                    ? <div>Sorry, we will fix it soon...</div>
+                    : <div>Loading...</div>
+            }
 
 
-    </MenuStyled>
-)
+        </MenuStyled>
+    )
+}
 
