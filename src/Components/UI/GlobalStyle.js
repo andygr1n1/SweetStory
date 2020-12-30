@@ -70,4 +70,9 @@ export const GlobalStyle = createGlobalStyle`
         background: #303135;
         text-align: center;
     }
+    
+    .toggle__show {
+    display: block;
+    }
+    
 `

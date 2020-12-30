@@ -51,7 +51,6 @@ export default function App() {
                 {...openItem }
                 stateChoices={stateChoices}
                 stateTopping={stateTopping}
-                firebaseDatabase={firebase.database}
             />
             {openItem.openItem && <ModalItem {...openItem} {...orders} stateChoices={stateChoices} stateTopping={stateTopping} />}
         </>

@@ -11,6 +11,7 @@ import bgImgStandart from "../../image/li-background2.jpg"
 import RellaxWrapper from "react-rellax-wrapper";
 import parallaxImg1 from "../../image/parallax1.png"
 import parallaxImg2 from "../../image/parallax2.png"
+import {Preloader} from "../UI/Preloader";
 
 const MenuStyled = styled.main`
     background-color: snow;
@@ -37,7 +38,23 @@ const ParallaxImg2 = styled.img`
     z-index: -9;    
 `
 
-export const Menu = ({setOpenItem, stateChoices, stateTopping, firebaseDatabase}) => {
+const ExText = styled.div`    
+    width: 30%;
+    text-align: center;
+    margin: 40px auto 10px;
+    font-size: 30px;
+    text-shadow: 1px 1px 0.3px rgb(40,39,39);
+    color: #1b8f18;    
+    font-family: 'Anton',sans-serif;
+`
+
+const PreloaderData = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+`
+
+export const Menu = ({setOpenItem, stateChoices, stateTopping}) => {
     const res = useFetch();
     const DBSweet = res.response;
     console.log(DBSweet)
@@ -97,8 +114,12 @@ export const Menu = ({setOpenItem, stateChoices, stateTopping, firebaseDatabase}
                     </SectionMenu>
                     </>
                     : res.error
-                    ? <div>Sorry, we will fix it soon...</div>
-                    : <div>Loading...</div>
+                    ? <ExText>Ooooops, we will fix it soon :)...Please call us - 373 (68) 953 - 913</ExText>
+                    :<PreloaderData>
+                        <ExText>Loading</ExText>
+                        <Preloader />
+                    </PreloaderData>
+
             }
 
 
