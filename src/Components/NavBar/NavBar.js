@@ -102,7 +102,7 @@ export const NavBar = ({authentication, logIn, logOut}) => (
         {authentication
             ? <Button btnLogout>
                     <LogInDataUi onClick={toggleModalUserOptions}>
-                        <LoginImg src={authentication.photoURL} alt={authentication.displayName}/><LoginText>{authentication.displayName}</LoginText>
+                        <LoginImg src={authentication.photoURL} alt={'img'}/><LoginText>{authentication.displayName}</LoginText>
                     </LogInDataUi>
                 <UserPanel id={'user__panel'}>
                     <LogOutText onClick={logOut}>Log out</LogOutText>
