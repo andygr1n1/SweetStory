@@ -1,13 +1,12 @@
 import React, {useContext} from 'react';
+import {Context} from "../Functions/context";
 import {H2} from "../UI/H2";
 import {Button} from "../UI/Button";
 import {OrderListItem} from "./OrderListItem";
 import {EmptyList, OrderContent, OrderStyled, Total, TotalPrice} from "../UI/OrderStyled";
 import {TotalCalc, USD_CURRENCY} from "../Functions/secondaryFunction";
-import {Context} from "../Functions/context";
 
 export const Order = () => {
-
     const {auth: {authentication, logIn}} = useContext(Context);
     const {orders: { orders, setOrders,}} = useContext(Context);
     const {orderConfirm: {setOpenOrderConfirm}} = useContext(Context);

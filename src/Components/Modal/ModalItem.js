@@ -51,9 +51,13 @@ const ModalContent = styled.div`
 `;
 
 
-export const ModalItem = ({stateChoices, stateTopping}) => {
-    const {openItem: {openItem, setOpenItem}} = useContext(Context);
-    const {orders: { orders, setOrders}} = useContext(Context)
+export const ModalItem = () => {
+    const {
+        openItem: {openItem, setOpenItem},
+        stateChoices,
+        stateTopping,
+        orders: {orders, setOrders}
+    } = useContext(Context);
 
     const isEdit = openItem.index > -1;
     const stateFoodComponents = useFoodComponents(openItem);

@@ -51,9 +51,12 @@ const P = styled.p`
   font-family: 'Stint Ultra Condensed', cursive;
 `
 
-export const ListItem = ({itemList, bgImg, stateChoices, stateTopping}) => {
-    const {openItem: {setOpenItem}} = useContext(Context);
-    console.log(itemList)
+export const ListItem = ({itemList, bgImg}) => {
+    const {
+        openItem: {setOpenItem},
+        stateChoices: {setChoice},
+        stateTopping: {setTopping},
+    } = useContext(Context);
 
     return (
         <List>
@@ -64,8 +67,8 @@ export const ListItem = ({itemList, bgImg, stateChoices, stateTopping}) => {
                     bgImg={bgImg}
                     onClick={() => {
                         setOpenItem(item);
-                        stateChoices.setChoice("")
-                        stateTopping.setTopping("")
+                        setChoice("")
+                        setTopping("")
                     }}
                 >
                     <Img src={item.img}/>

@@ -40,6 +40,7 @@ export default function App() {
 
     const database = firebase.database();
     const DBSweetStory = useDb(database);
+    console.log('DBSweetStory__gogogo', DBSweetStory)
 
     return (
         <Context.Provider value={{
@@ -54,13 +55,9 @@ export default function App() {
             <GlobalStyle />
             <NavBar />
             <Order />
-            <Menu
-                stateChoices={stateChoices}
-                stateTopping={stateTopping}
-                DBSweetStory={DBSweetStory}
-            />
-            {openItem.openItem && <ModalItem stateChoices={stateChoices} stateTopping={stateTopping} />}
-            {orderConfirm.openOrderConfirm && <OrderConfirm/>}
+            <Menu DBSweetStory={DBSweetStory} />
+            {openItem.openItem && <ModalItem />}
+            {orderConfirm.openOrderConfirm && <OrderConfirm />}
         </Context.Provider>
     );
 }

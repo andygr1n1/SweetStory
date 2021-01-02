@@ -22,10 +22,12 @@ const rulesData = {
 
 export const OrderConfirm = () => {
 
-    const {auth: {authentication}} = useContext(Context);
-    const {orders: {orders, setOrders,}} = useContext(Context);
-    const {orderConfirm: {setOpenOrderConfirm}} = useContext(Context);
-    const {database} = useContext(Context);
+    const {
+        auth: {authentication},
+        orders: {orders, setOrders},
+        orderConfirm: {setOpenOrderConfirm},
+        database,
+    } = useContext(Context);
     const thanks = useThanksForOrder();
 
     const OverlayRef = useRef(null);

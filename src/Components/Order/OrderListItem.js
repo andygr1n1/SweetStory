@@ -1,9 +1,8 @@
 import React, {useContext, useRef} from 'react';
+import {Context} from "../Functions/context";
 import styled from 'styled-components';
 import {TOTAL_PRICE_ITEMS, USD_CURRENCY} from "../Functions/secondaryFunction";
 import {Button} from "../UI/Button";
-import {Context} from "../Functions/context";
-
 
 const OrderItemStyled = styled.li`
     display: flex;

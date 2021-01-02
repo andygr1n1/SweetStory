@@ -52,7 +52,10 @@ const PreloaderData = styled.div`
   flex-direction: column;
 `
 
-export const Menu = ({stateChoices, stateTopping, DBSweetStory}) => {
+export const Menu = ({DBSweetStory}) => {
+
+    console.log('DBSweetStory', DBSweetStory);
+
     return (
         <MenuStyled>
             <Banner/>
@@ -64,8 +67,8 @@ export const Menu = ({stateChoices, stateTopping, DBSweetStory}) => {
                         <ListItem
                             itemList={DBSweetStory.newYear}
                             bgImg={bgImgNewYear}
-                            stateChoices={stateChoices}
-                            stateTopping={stateTopping}
+
+
                         />
                     </SectionMenu>
                     <RellaxWrapper speed={2} center={true}>
@@ -76,8 +79,6 @@ export const Menu = ({stateChoices, stateTopping, DBSweetStory}) => {
                         <ListItem
                             itemList={DBSweetStory.desserts}
                             bgImg={bgImgStandart}
-                            stateChoices={stateChoices}
-                            stateTopping={stateTopping}
                         />
                     </SectionMenu>
                     <RellaxWrapper speed={2} center={false}>
@@ -89,8 +90,6 @@ export const Menu = ({stateChoices, stateTopping, DBSweetStory}) => {
                         <ListItem
                             itemList={DBSweetStory.cookies}
                             bgImg={bgImgStandart}
-                            stateChoices={stateChoices}
-                            stateTopping={stateTopping}
                         />
                     </SectionMenu>
                     <SectionMenu>
@@ -98,8 +97,6 @@ export const Menu = ({stateChoices, stateTopping, DBSweetStory}) => {
                         <ListItem
                             itemList={DBSweetStory.drinks}
                             bgImg={bgImgStandart}
-                            stateChoices={stateChoices}
-                            stateTopping={stateTopping}
                         />
                     </SectionMenu>
                     </>
