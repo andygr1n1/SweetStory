@@ -1,5 +1,4 @@
 import React from "react";
-import {useFetch} from "../Hooks/useFetch";
 import styled from 'styled-components';
 import {ListItem} from "./ListItem";
 import {Banner} from "./Banner";
@@ -7,7 +6,6 @@ import {H2} from "../UI/H2";
 import bgImg from "../../image/premium.png"
 import bgImgNewYear from "../../image/li-background.jpg"
 import bgImgStandart from "../../image/li-background2.jpg"
-
 import RellaxWrapper from "react-rellax-wrapper";
 import parallaxImg1 from "../../image/parallax1.png"
 import parallaxImg2 from "../../image/parallax2.png"
@@ -54,22 +52,17 @@ const PreloaderData = styled.div`
   flex-direction: column;
 `
 
-export const Menu = ({setOpenItem, stateChoices, stateTopping}) => {
-    const res = useFetch();
-    const DBSweet = res.response;
-    console.log(DBSweet)
-
+export const Menu = ({stateChoices, stateTopping, DBSweetStory}) => {
     return (
         <MenuStyled>
             <Banner/>
             {
-                res.response
+                DBSweetStory
                     ? <>
                     <SectionMenu>
                         <H2 newYearOffer>New Year Offer</H2>
                         <ListItem
-                            itemList={DBSweet.newYear}
-                            setOpenItem={setOpenItem}
+                            itemList={DBSweetStory.newYear}
                             bgImg={bgImgNewYear}
                             stateChoices={stateChoices}
                             stateTopping={stateTopping}
@@ -81,8 +74,7 @@ export const Menu = ({setOpenItem, stateChoices, stateTopping}) => {
                     <SectionMenu>
                         <H2 menuHeader>Desserts</H2>
                         <ListItem
-                            itemList={DBSweet.desserts}
-                            setOpenItem={setOpenItem}
+                            itemList={DBSweetStory.desserts}
                             bgImg={bgImgStandart}
                             stateChoices={stateChoices}
                             stateTopping={stateTopping}
@@ -95,8 +87,7 @@ export const Menu = ({setOpenItem, stateChoices, stateTopping}) => {
 
                         <H2 menuHeader>Cookies</H2>
                         <ListItem
-                            itemList={DBSweet.cookies}
-                            setOpenItem={setOpenItem}
+                            itemList={DBSweetStory.cookies}
                             bgImg={bgImgStandart}
                             stateChoices={stateChoices}
                             stateTopping={stateTopping}
@@ -105,24 +96,18 @@ export const Menu = ({setOpenItem, stateChoices, stateTopping}) => {
                     <SectionMenu>
                         <H2 menuHeader>Drinks</H2>
                         <ListItem
-                            itemList={DBSweet.drinks}
-                            setOpenItem={setOpenItem}
+                            itemList={DBSweetStory.drinks}
                             bgImg={bgImgStandart}
                             stateChoices={stateChoices}
                             stateTopping={stateTopping}
                         />
                     </SectionMenu>
                     </>
-                    : res.error
-                    ? <ExText>Ooooops, we will fix it soon :)...Please call us - 373 (68) 953 - 913</ExText>
                     :<PreloaderData>
                         <ExText>Loading</ExText>
                         <Preloader />
                     </PreloaderData>
-
             }
-
-
         </MenuStyled>
     )
 }

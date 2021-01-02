@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useContext} from "react";
 import styled from 'styled-components';
 import {USD_CURRENCY} from "../Functions/secondaryFunction";
+import {Context} from "../Functions/context";
 
 const List = styled.ul`
     display:flex;
@@ -50,23 +51,28 @@ const P = styled.p`
   font-family: 'Stint Ultra Condensed', cursive;
 `
 
-export const ListItem = ({ itemList, setOpenItem, bgImg, stateChoices, stateTopping }) => (
-    <List>
-        {itemList.map((item) => (
-            <Item
-                key={'_' + Math.random().toString(36).substr(2, 9)}
-                img={item.img}
-                bgImg={bgImg}
-                onClick={ () => {
-                    setOpenItem(item);
-                    stateChoices.setChoice("")
-                    stateTopping.setTopping("")
-                } }
-            >
-                <Img src={item.img} />
-                <P>{item.name}</P>
-                <P>{USD_CURRENCY(item.price)}</P>
-            </Item>
-        ))}
-    </List>
-)
+export const ListItem = ({itemList, bgImg, stateChoices, stateTopping}) => {
+    const {openItem: {setOpenItem}} = useContext(Context);
+    console.log(itemList)
+
+    return (
+        <List>
+            {itemList.map((item) => (
+                <Item
+                    key={'_' + Math.random().toString(36).substr(2, 9)}
+                    img={item.img}
+                    bgImg={bgImg}
+                    onClick={() => {
+                        setOpenItem(item);
+                        stateChoices.setChoice("")
+                        stateTopping.setTopping("")
+                    }}
+                >
+                    <Img src={item.img}/>
+                    <P>{item.name}</P>
+                    <P>{USD_CURRENCY(item.price)}</P>
+                </Item>
+            ))}
+        </List>
+    )
+}

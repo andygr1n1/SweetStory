@@ -2,6 +2,7 @@ import React from "react";
 import firebase from "firebase/app";
 import 'firebase/auth';
 import 'firebase/database';
+import {useDb} from "./Components/Hooks/useDb";
 import {GlobalStyle} from "./Components/UI/GlobalStyle";
 import {NavBar} from "./Components/NavBar/NavBar";
 import {Menu} from "./Components/Menu/Menu";
@@ -13,6 +14,9 @@ import {useChoices} from "./Components/Hooks/useChoices";
 import {useToppings} from "./Components/Hooks/useToppings";
 import {useAuth} from "./Components/Hooks/useAuth";
 import {useTitle} from "./Components/Hooks/useTitle";
+import {OrderConfirm} from "./Components/Order/OrderConfirm";
+import {useOrderConfirm} from "./Components/Hooks/useOrderConfirm";
+import {Context} from "./Components/Functions/context";
 
 const firebaseConfig = {
     apiKey: "AIzaSyC6DvggbudvFEIzMYkRo_FA0xyrsA2tk_M",
@@ -23,7 +27,6 @@ const firebaseConfig = {
     messagingSenderId: "12314917336",
     appId: "1:12314917336:web:1c553e7fc7166cd634daad"
 };
-
 firebase.initializeApp(firebaseConfig);
 
 export default function App() {
@@ -32,27 +35,32 @@ export default function App() {
     const orders = useOrder();
     const stateChoices = useChoices();
     const stateTopping = useToppings();
+    const orderConfirm = useOrderConfirm();
     useTitle(openItem.openItem);
 
+    const database = firebase.database();
+    const DBSweetStory = useDb(database);
 
     return (
-        <>
-            <GlobalStyle/>
-            <NavBar {...auth} />
-            <Order
-                {...auth}
-                {...orders}
-                {...openItem}
-                firebaseDatabase={firebase.database}
-                stateChoices={stateChoices}
-                stateTopping={stateTopping}
-            />
+        <Context.Provider value={{
+            auth,
+            openItem,
+            orders,
+            orderConfirm,
+            database,
+            stateChoices,
+            stateTopping
+        }}>
+            <GlobalStyle />
+            <NavBar />
+            <Order />
             <Menu
-                {...openItem }
                 stateChoices={stateChoices}
                 stateTopping={stateTopping}
+                DBSweetStory={DBSweetStory}
             />
-            {openItem.openItem && <ModalItem {...openItem} {...orders} stateChoices={stateChoices} stateTopping={stateTopping} />}
-        </>
+            {openItem.openItem && <ModalItem stateChoices={stateChoices} stateTopping={stateTopping} />}
+            {orderConfirm.openOrderConfirm && <OrderConfirm/>}
+        </Context.Provider>
     );
 }

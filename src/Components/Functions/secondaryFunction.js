@@ -10,7 +10,17 @@ export const projection = rules => {
         newObj[key] = rules[key].reduce((val, fn, i) => (i ? fn(val) : obj[fn]), null);
         return newObj;
     }, {})
+}
 
-
-
+export const TotalCalc = (orders) => {
+    let priceArray = [];
+    let countArray = [];
+    orders.forEach(order => {
+        priceArray.push(order.price * Number(order.count));
+        countArray.push(Number(order.count))
+    })
+    return {
+        priceAllOrders : priceArray.reduce((result, price) => result + price, 0),
+        countAllOrders : countArray.reduce((result, count) => result + count, 0)
+    }
 }

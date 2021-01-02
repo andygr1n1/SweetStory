@@ -1,7 +1,8 @@
-import React, {useRef} from 'react';
+import React, {useContext, useRef} from 'react';
 import styled from 'styled-components';
 import {TOTAL_PRICE_ITEMS, USD_CURRENCY} from "../Functions/secondaryFunction";
 import {Button} from "../UI/Button";
+import {Context} from "../Functions/context";
 
 
 const OrderItemStyled = styled.li`
@@ -39,14 +40,18 @@ const FoodComponentsDescription = styled.div`
    font-size: 14px;
 `
 
-const editWindow = (setOpenItem, order, index, stateChoices, stateTopping) => {
+const editWindow = (setOpenItem, order, index, setChoice, setTopping) => {
     setOpenItem({...order, index});
-    stateChoices.setChoice(order.choice ? order.choice : "");
-    stateTopping.setTopping(order.topping ? order.topping : "")
+    setChoice(order.choice ? order.choice : "");
+    setTopping(order.topping ? order.topping : "")
 }
 
 
-export const OrderListItem = ({order, setOrders, index, orders, setOpenItem,stateChoices, stateTopping}) => {
+export const OrderListItem = ({order, setOrders, index, orders}) => {
+    const {openItem: {setOpenItem}} = useContext(Context)
+    const {stateChoices: {setChoice}} = useContext(Context)
+    const {stateTopping: {setTopping}} = useContext(Context)
+
     const $foodComponents = order.fComponents.filter(item => item.checked)
         .map(item => item.name)
         .join(', ');
@@ -56,7 +61,7 @@ export const OrderListItem = ({order, setOrders, index, orders, setOpenItem,stat
     return (
         <OrderItemStyled onClick={(e) => e.target === btnRemoveItem.current
             ?  setOrders([...orders].filter((order, i) => i !== index))
-            : editWindow(setOpenItem, order, index, stateChoices, stateTopping)
+            : editWindow(setOpenItem, order, index, setChoice, setTopping)
             }
         >
             <ItemName>

@@ -1,30 +1,19 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components'
 import {Ingredients} from "./Ingredients";
 import {Toppings} from "./Toppings";
 import {Choices} from "./Choices";
 import {Button} from "../UI/Button";
 import {H2} from "../UI/H2";
+import {Overlay} from "../UI/Overlay";
 import bgImgStandart from "../../image/li-background2.jpg"
 import {CountItem} from "./CountItem";
 import {TOTAL_PRICE_ITEMS} from "../Functions/secondaryFunction";
 import {FoodComponents} from "./FoodComponents";
 import useFoodComponents from "../Hooks/useFoodComponents";
 import {useCount} from "../Hooks/useCount";
+import {Context} from "../Functions/context";
 
-const Overlay = styled.div`
-      font-family: 'Anton', sans-serif;
-      position: fixed;
-      display:flex;
-      justify-content: center;
-      align-items: center;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, .9);
-      z-index: 20000;
-`;
 const Modal = styled.div`
       position: inherit;
       background-color: #fff;    
@@ -62,7 +51,10 @@ const ModalContent = styled.div`
 `;
 
 
-export const ModalItem = ({openItem, setOpenItem, orders, setOrders, stateChoices, stateTopping}) => {
+export const ModalItem = ({stateChoices, stateTopping}) => {
+    const {openItem: {openItem, setOpenItem}} = useContext(Context);
+    const {orders: { orders, setOrders}} = useContext(Context)
+
     const isEdit = openItem.index > -1;
     const stateFoodComponents = useFoodComponents(openItem);
     const stateCounter = useCount(openItem.count);
