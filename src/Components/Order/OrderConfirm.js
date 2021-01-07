@@ -1,9 +1,9 @@
 import React, {useContext, useRef} from 'react';
 import {Overlay} from "../UI/Overlay";
 import {H2} from "../UI/H2";
+import {H3} from "../UI/H3";
 import {Button} from "../UI/Button";
-import {Total, TotalPrice} from "../UI/OrderStyled";
-import {ModalOrderConfirm, Text} from "../UI/OrderConfirmStyled";
+import {ModalOrderConfirm, ConfirmWrap, ConfirmInfo, TotalPrice} from "./OrderStyled";
 import {projection, TotalCalc, USD_CURRENCY} from "../Functions/secondaryFunction";
 import {Context} from "../Functions/context";
 import {useThanksForOrder} from "../Hooks/useThanksForOrder";
@@ -12,12 +12,12 @@ const rulesData = {
     name: ['name'],
     price: ['price'],
     count: ['count'],
-    topping: ['topping', item => item ? item : "Data not set"],
-    choice: ['choice', item => item ? item : "Data not set"],
+    topping: ['topping', item => item ? item : (Number(0))],
+    choice: ['choice', item => item ? item : (Number(0))],
     fComponents: [
         'fComponents', arr => arr.filter(x => x.checked).map(x => x.name),
-        arr => arr.length ? arr : "Data not set",
-    ],
+        arr => arr.length ? arr : (Number(0))
+    ]
 }
 
 export const OrderConfirm = () => {
@@ -50,7 +50,7 @@ export const OrderConfirm = () => {
         setTimeout(() => {
             setOpenOrderConfirm(false);
             thanks.setThanksForOrder(false);
-        }, 2000)
+        }, 4000)
     }
 
 
@@ -65,17 +65,21 @@ export const OrderConfirm = () => {
                 <H2>{authentication.displayName}</H2>
                 {thanks.thanksForOrder
                     ?
-                    <Text>Thanks For Order</Text>
+                    <ConfirmWrap>
+                        <H3 thanks>Thanks For Order!</H3>
+                        <h3>Verify your email for details</h3>
+                    </ConfirmWrap>
                     :
-                    <>
-                        <Text>Let's verify your order</Text>
-                        <Total>
-                            <span>Total</span><span>{TotalCalc(orders).countAllOrders}</span><TotalPrice>{USD_CURRENCY(TotalCalc(orders).priceAllOrders)}</TotalPrice>
-                        </Total>
+                    <ConfirmWrap>
+                        <h3>Let's verify your order</h3>
+                        <ConfirmInfo>
+                            <h3>Total</h3>
+                            <TotalPrice>{USD_CURRENCY(TotalCalc(orders).priceAllOrders)}</TotalPrice>
+                        </ConfirmInfo>
                         <Button btnModal onClick={() => {
                             sendOrder()
                         }}>Buy</Button>
-                    </>
+                    </ConfirmWrap>
                 }
             </ModalOrderConfirm>
         </Overlay>

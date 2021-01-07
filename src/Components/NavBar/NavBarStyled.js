@@ -66,6 +66,12 @@ export const UserPanel = styled.div`
     cursor: default;
 `
 
-export const LogOutText = styled.span`
+export const UserOrder = styled.div`
+    color: darkred;
+    cursor: pointer;
+`
+
+export const LogOutText = styled.div`
   cursor: pointer;
+  margin-top: 50px;
 `

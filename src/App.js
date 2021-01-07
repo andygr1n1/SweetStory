@@ -17,15 +17,17 @@ import {useTitle} from "./Components/Hooks/useTitle";
 import {OrderConfirm} from "./Components/Order/OrderConfirm";
 import {useOrderConfirm} from "./Components/Hooks/useOrderConfirm";
 import {Context} from "./Components/Functions/context";
+import {useIsOrderOpen} from "./Components/Hooks/useIsOrderOpen";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyC6DvggbudvFEIzMYkRo_FA0xyrsA2tk_M",
-    authDomain: "sweetstory-77894.firebaseapp.com",
-    databaseURL: "https://sweetstory-77894-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "sweetstory-77894",
-    storageBucket: "sweetstory-77894.appspot.com",
-    messagingSenderId: "12314917336",
-    appId: "1:12314917336:web:1c553e7fc7166cd634daad"
+    apiKey: "AIzaSyDCflW-_hCyfBIHn__an4ERfdQsmBT_L4E",
+    authDomain: "sweetstory-ba648.firebaseapp.com",
+    databaseURL: "https://sweetstory-ba648-default-rtdb.firebaseio.com",
+    projectId: "sweetstory-ba648",
+    storageBucket: "sweetstory-ba648.appspot.com",
+    messagingSenderId: "356908603608",
+    appId: "1:356908603608:web:c7c018a16416de068ddfad"
+
 };
 firebase.initializeApp(firebaseConfig);
 
@@ -37,10 +39,10 @@ export default function App() {
     const stateTopping = useToppings();
     const orderConfirm = useOrderConfirm();
     useTitle(openItem.openItem);
+    const orderAnimation = useIsOrderOpen();
 
     const database = firebase.database();
     const DBSweetStory = useDb(database);
-    console.log('DBSweetStory__gogogo', DBSweetStory)
 
     return (
         <Context.Provider value={{
@@ -50,12 +52,13 @@ export default function App() {
             orderConfirm,
             database,
             stateChoices,
-            stateTopping
+            stateTopping,
+            orderAnimation,
         }}>
             <GlobalStyle />
             <NavBar />
             <Order />
-            <Menu DBSweetStory={DBSweetStory} />
+            <Menu />
             {openItem.openItem && <ModalItem />}
             {orderConfirm.openOrderConfirm && <OrderConfirm />}
         </Context.Provider>

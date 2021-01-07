@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import {USD_CURRENCY} from "../Functions/secondaryFunction";
 import {Context} from "../Functions/context";
 
@@ -8,11 +8,19 @@ const List = styled.ul`
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    margin: 0 auto;
+    width: 900px;
+    padding-left: 30px;
+    
 `
 
 const Item = styled.li`
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 360px;
     position: relative;
-    width: 30%;
+    width: 25%;
     background-image: url(${({bgImg}) => bgImg});
     background-size: cover;
     background-position: center;
@@ -45,11 +53,30 @@ const Img = styled.img`
   margin: 0 0 15px 0;  
 `
 
-const P = styled.p`
-  padding: 0 0 10px 15px;
-  font-size: 30px;
-  font-family: 'Stint Ultra Condensed', cursive;
-`
+// const MenuItemContent = styled.div`
+//
+//
+//   font-family:
+//
+//   ${props => props.itemHeader & css`
+//      background: gold;
+//   `}
+//
+// `
+
+const MenuItemContent = styled.div`
+    font-family: 'Stint Ultra Condensed', cursive;
+    font-size: 30px;
+    padding: 0 10px 10px 15px;
+    
+  ${props => props.itemHeader && css`    
+    flex: 1 1 auto;    
+  `}
+  
+  ${props => props.itemPrice && css`
+    color: #08ad22;   
+  `}
+ `
 
 export const ListItem = ({itemList, bgImg}) => {
     const {
@@ -72,8 +99,8 @@ export const ListItem = ({itemList, bgImg}) => {
                     }}
                 >
                     <Img src={item.img}/>
-                    <P>{item.name}</P>
-                    <P>{USD_CURRENCY(item.price)}</P>
+                    <MenuItemContent itemHeader>{item.name}</MenuItemContent>
+                    <MenuItemContent itemPrice>{USD_CURRENCY(item.price)}</MenuItemContent>
                 </Item>
             ))}
         </List>
