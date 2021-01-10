@@ -2,23 +2,23 @@ import React from "react";
 import firebase from "firebase/app";
 import 'firebase/auth';
 import 'firebase/database';
-// import {useDb} from "./Components/Hooks/useDb";
 import {GlobalStyle} from "./Components/UI/GlobalStyle";
 import {NavBar} from "./Components/NavBar/NavBar";
 import {Menu} from "./Components/Menu/Menu";
 import {ModalItem} from "./Components/Modal/ModalItem";
 import {Order} from "./Components/Order/Order";
+import {OrderConfirm} from "./Components/Order/OrderConfirm";
+import {Footer} from "./Components/Footer/Footer";
+import {Context} from "./Components/Functions/context";
 import {useOpenItem} from "./Components/Hooks/useOpenItem";
 import {useOrder} from "./Components/Hooks/useOrders";
 import {useChoices} from "./Components/Hooks/useChoices";
 import {useToppings} from "./Components/Hooks/useToppings";
 import {useAuth} from "./Components/Hooks/useAuth";
 import {useTitle} from "./Components/Hooks/useTitle";
-import {OrderConfirm} from "./Components/Order/OrderConfirm";
 import {useOrderConfirm} from "./Components/Hooks/useOrderConfirm";
-import {Context} from "./Components/Functions/context";
 import {useIsOrderOpen} from "./Components/Hooks/useIsOrderOpen";
-import {Footer} from "./Components/Footer/Footer";
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyDCflW-_hCyfBIHn__an4ERfdQsmBT_L4E",
@@ -43,7 +43,6 @@ export default function App() {
     const orderAnimation = useIsOrderOpen();
 
     const database = firebase.database();
-    // const DBSweetStory = useDb(database);
 
     return (
         <Context.Provider value={{
