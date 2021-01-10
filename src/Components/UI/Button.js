@@ -1,6 +1,7 @@
 import styled, {css} from "styled-components";
 import removeItem from '../../image/close-icon.png'
 import shopImg from '../../image/shop-logo-big.png'
+import {device} from "./MediaQueries/MediaQueries";
 
 export const Button = styled.button`
     font-family: 'Roboto Condensed', sans-serif;
@@ -14,21 +15,16 @@ export const Button = styled.button`
     justify-content: center;
     align-items: center; 
     color: #f0f0f0;
-    text-transform: uppercase;
-    margin-right: 10px;
+    text-transform: uppercase;    
     background: none;  
   `}
   
     ${props => props.btnLogout && css`
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     align-items: center; 
     color: #f0f0f0;
-    text-transform: uppercase;
-    margin-right: 10px;
-    background: none;   
-    height: 50px;
+    text-transform: uppercase; 
+    background: none;  
   `}
   
     ${props => props.btnModal && css`
@@ -84,9 +80,28 @@ export const Button = styled.button`
        background-image: url(${removeItem});
        background-position: center;
        background-size: cover;
-       background-repeat: no-repeat;      
+       background-repeat: no-repeat;
+       
+      @media${device.mobileL} {       
+        right: 10px;
+        top: -40px;        
+      }            
 `}
-  
+       ${props => props.orderConfirmBtnClose && css`
+         position: absolute;
+         right: -50px;
+         width: 30px;
+         height: 30px;
+         background-color: transparent;
+         background-image: url(${removeItem});
+         background-position: center;
+         background-size: cover;
+         background-repeat: no-repeat;
+          @media${device.mobileL} {       
+            right: 10px;
+            top: 10px;        
+          }
+`}
       ${(props) => props.openOrder  && css`       
        width: 30px;       
        height: 30px;       
@@ -95,5 +110,8 @@ export const Button = styled.button`
        background-position: center;
        background-size: cover;
        background-repeat: no-repeat;
+
   `}
+      
+      
 `;

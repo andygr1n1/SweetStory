@@ -1,17 +1,21 @@
 import styled from 'styled-components'
 import bgImg from "../../image/premium.png"
+import {device} from "../UI/MediaQueries/MediaQueries";
 
 export const MenuStyled = styled.main`
     background-color: snow;
     background-image: url(${bgImg});
-    margin: 80px 0 0;
+    margin: 60px 0 0;
+    width: 100%;
+    
+    @media ${device.laptop} {      
+    }
 `
-export const SectionMenu = styled.section`
+export const SectionMenu = styled.div`
     padding: 30px;
     display: flex;
     flex-direction: column;
-    justify-content: center; 
-    z-index: 9;    
+    justify-content: center;    
 `
 export const ParallaxImg1 = styled.img`
     position: absolute;

@@ -11,15 +11,16 @@ import parallaxImg1 from "../../image/parallax1.png"
 import parallaxImg2 from "../../image/parallax2.png"
 import {Preloader} from "../UI/Animation/Preloader";
 
+import bannerImg from "../../image/banner-cookie-store.png"
+
 
 
 export const Menu = () => {
     const DBSweetStory =  useFetch().response;
-    console.log(useFetch().response)
 
     return (
         <MenuStyled>
-            <Banner/>
+            <Banner src={bannerImg} alt="banner"/>
             {
                 DBSweetStory
                     ? <>
@@ -28,8 +29,6 @@ export const Menu = () => {
                         <ListItem
                             itemList={DBSweetStory.newYear}
                             bgImg={bgImgNewYear}
-
-
                         />
                     </SectionMenu>
                     <RellaxWrapper speed={2} center={true}>

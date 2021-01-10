@@ -8,6 +8,11 @@ const CountWrapper = styled.div`
     display: flex;
     justify-content: space-between;    
     color: snow;
+    align-items: center;
+    font-family: 'Stint Ultra Condensed',cursive;
+    width: 250px;
+    margin: 0 auto;
+   font-size: 25px;
 
 `;
 
@@ -15,11 +20,11 @@ const CountInputWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  
 `
 
 const CountInput = styled.input`
-    width: 50px;
-    font-size: 20px;    
+    width: 50px;    
     outline: none;
     color: snow;
     text-align: center;
@@ -31,8 +36,8 @@ const CountInput = styled.input`
 
 const TotalPrice = styled.span`
     width: 25%;
-    color: #00b01d;
-    margin-right: 20px;
+    color: #00b01d;    
+    font-size: 25px;
 `
 
 export function CountItem({counter, totalPriceItems}) {

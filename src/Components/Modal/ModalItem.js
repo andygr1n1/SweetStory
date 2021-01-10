@@ -13,6 +13,7 @@ import {FoodComponents} from "./FoodComponents";
 import useFoodComponents from "../Hooks/useFoodComponents";
 import {useCount} from "../Hooks/useCount";
 import {Context} from "../Functions/context";
+import {device} from "../UI/MediaQueries/MediaQueries";
 
 const Modal = styled.div`
       position: inherit;
@@ -27,6 +28,10 @@ const Modal = styled.div`
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);   
       z-index: 15000;
+      
+      @media${device.mobileL} {
+        width: 100%;
+      }
 `;
 const Banner = styled.div`
     border-radius: 10px 10px 0 0 ;

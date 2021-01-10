@@ -1,20 +1,25 @@
 import styled from "styled-components";
 import bgImg from '../../image/premium.png'
+import {device} from "../UI/MediaQueries/MediaQueries";
 
 export const OrderWrap = styled.section`
     position: fixed;
-    top: 80px;
+    top: 0;
     left: 0;    
-    max-width: 350px;
+    max-width: 414px;
     width: 100%;
-    height: calc(100% - 80px);
-    z-index: 100;
+    height: 100%;    
     box-shadow: 3px 4px 6px rgba(145,5,5,0.23);    
     display: flex;
-    flex-direction: row;   
-    margin-left: -320px;
+    flex-direction: row;     
+    margin-left: -385px;
     transition: margin .5s;  
-    background-image: url(${bgImg});  
+    background-image: url(${bgImg});
+    z-index: 1; 
+        
+    @media ${device.mobileL} {       
+         box-shadow: none;    
+    }    
 `;
 
 export const OrderToggleBtn = styled.div`
@@ -27,7 +32,7 @@ export const OrderToggleBtn = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  height: auto;
+  height: 100%;
 `
 
 export const OrderToggleSymbol = styled.span`
@@ -39,11 +44,11 @@ export const OrderToggleSymbol = styled.span`
 
 export const OrderStyled = styled.div`
     width: 100%;
-    height: 100%;  
-    padding: 20px;
+    height: 100%;     
     display: flex;
     flex-direction: column;   
     overflow: auto;
+    padding: 130px 20px 20px;  
 `;
 
 export const OrderContent = styled.div`
@@ -67,6 +72,14 @@ export const ModalOrderConfirm = styled.div`
    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);   
    z-index: 1;
    background-image: url(${bgImg});
+   
+          
+      @media${device.mobileL} {       
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        padding-top: 60px;
+      }      
 `
 export const ConfirmWrap = styled.div`
   display: flex;
@@ -85,26 +98,44 @@ export const ConfirmInfo = styled.div`
   width: 100%;
   flex-grow: 1;
   
+  & h3 {
+    margin-bottom: 10px;
+    font-size: 40px;
+  }
+  
+  & h4 {
+    margin: 0;
+    padding: 0;
+    font-size: 30px;
+    text-align: center;
+    min-width: 65px;       
+    color: #2cb371;
+    font-weight: bolder;
+    text-shadow: 1px 1px 0.5px rgb(40,39,39);;
+  }
+   
+  }
+  
 `
-
-export const Text = styled.div`
-  text-align: center;
-  margin-bottom: 30px;
-  flex: 1 1 auto;
-`
-
 
 
 export const Total = styled.div`
     display: flex;    
-    margin: 0 35px 30px;
+    justify-content: space-between;
+    margin: 0 20px 20px 0;
+    
         & span:first-child {
         flex-grow: 1;
+        font-weight: bolder;
     };
 `;
 
 export const TotalPrice = styled.div`
     text-align: center;
     min-width: 65px;   
+    margin-left: 25px;
+    color: #2cb371;
+    font-weight: bolder;
+    text-shadow: 1px 1px 0.5px rgb(40,39,39);;
 `
 

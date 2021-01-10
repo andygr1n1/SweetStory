@@ -11,6 +11,15 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: inherit;  
     }
     
+    @media (prefers-reduced-motion: reduce) {
+    * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    }
+    }
+    
     span {
         font: inherit;
     }
@@ -19,8 +28,11 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0;
         background-color: #f0f0f0;        
         font-family: 'Roboto Condensed', sans-serif;
-        font-size: 20px;
-        color: black;
+        font-size: 20px;   
+        min-height: 100vh;
+        scroll-behavior: smooth;
+        text-rendering: optimizeSpeed;
+        line-height: 1;     
     }
     
     img {
@@ -39,8 +51,7 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0;
     }
     
-    h1, h2, h3 {
-        //font-family: "Pacifico", sans-serif;
+    h1, h2, h3 {        
         font-family: 'Anton',sans-serif;
         margin: 0;
         padding: 0;
@@ -70,10 +81,5 @@ export const GlobalStyle = createGlobalStyle`
         padding: 3rem;
         background: #303135;
         text-align: center;
-    }
-    
-    .toggle__show {
-    display: block;
-    }
-    
+    }    
 `

@@ -21,7 +21,6 @@ export const Order = () => {
     const {orders: {orders, setOrders,}} = useContext(Context);
     const {orderConfirm: {setOpenOrderConfirm}} = useContext(Context);
     const {orderAnimation: {openClose, direction}} = useContext(Context);
-
     const saveOrder = () => {
         if (!authentication) {
             logIn();
@@ -56,7 +55,7 @@ export const Order = () => {
                         ?
                         <>
                             <Total>
-                                <span>Total</span><span>{TotalCalc(orders).countAllOrders}</span>
+                                <span>Total:</span><span>{TotalCalc(orders).countAllOrders}</span>
                                 <TotalPrice>{USD_CURRENCY(TotalCalc(orders).priceAllOrders)}</TotalPrice>
                             </Total>
                             <Button btnModal onClick={() => {

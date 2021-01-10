@@ -3,7 +3,7 @@ import {Overlay} from "../UI/Overlay";
 import {H2} from "../UI/H2";
 import {H3} from "../UI/H3";
 import {Button} from "../UI/Button";
-import {ModalOrderConfirm, ConfirmWrap, ConfirmInfo, TotalPrice} from "./OrderStyled";
+import {ModalOrderConfirm, ConfirmWrap, ConfirmInfo} from "./OrderStyled";
 import {projection, TotalCalc, USD_CURRENCY} from "../Functions/secondaryFunction";
 import {Context} from "../Functions/context";
 import {useThanksForOrder} from "../Hooks/useThanksForOrder";
@@ -59,7 +59,7 @@ export const OrderConfirm = () => {
             CloseOnOverlay(event)
         }}>
             <ModalOrderConfirm>
-                <Button ModalItemClose onClick={() => {
+                <Button  orderConfirmBtnClose onClick={() => {
                     setOpenOrderConfirm(false)
                 }}/>
                 <H2>{authentication.displayName}</H2>
@@ -74,7 +74,7 @@ export const OrderConfirm = () => {
                         <h3>Let's verify your order</h3>
                         <ConfirmInfo>
                             <h3>Total</h3>
-                            <TotalPrice>{USD_CURRENCY(TotalCalc(orders).priceAllOrders)}</TotalPrice>
+                            <h4>{USD_CURRENCY(TotalCalc(orders).priceAllOrders)}</h4>
                         </ConfirmInfo>
                         <Button btnModal onClick={() => {
                             sendOrder()
